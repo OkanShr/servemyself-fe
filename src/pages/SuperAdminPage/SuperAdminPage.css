@@ -1,0 +1,59 @@
+#profileheader{
+  color: aliceblue;
+  background-color: aqua;
+}
+#btn{
+  
+  border-radius: 7px;
+  background-color: white;
+  border-color: white;
+  color: black;
+  box-shadow: 0px 0.5px 0.6px;
+}
+#page{
+
+  background-color: bisque;
+}
+#gen{
+  background-color: bisque;
+  padding-left: 20%;
+  padding-right: 30.5%;
+  padding-bottom: 100%;
+}
+#navbuttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: "auto";
+  background-color: rgba(248, 248, 248, 0.596);
+  border-radius: 8px;
+  padding-bottom: 100%;
+}
+#navbuttonset1{
+  margin-left: "auto";
+  display:inline-block;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+  border-radius: 8px;
+}
+#navbuttonset2{
+  margin-left: "auto";
+  display:inline-block;
+  background-color: blanchedalmond;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+}
+#navbuttonset3{
+  margin-left: "auto";
+  display:inline-block;
+  background-color: blanchedalmond;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 100%;
+}

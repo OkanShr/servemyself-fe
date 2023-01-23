@@ -1,0 +1,17 @@
+#Rgdiv{
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  
+}
+#Rgbtn{
+  border-radius: 7px;
+  background-color: white;
+  border-color: white;
+  color: black;
+  box-shadow: 0px 0.5px 0.6px;
+}
+#Rgbtn:hover {
+  transition-duration: 0.2s;
+  box-shadow: 0px 2px 2.4px;
+}

@@ -1,0 +1,286 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@font-face {
+  font-family: Josefin Sans;
+  src: url(A:\servemyself-fe\JosefinSans-VariableFont_wght.ttf);
+}
+
+#body {
+  padding-top: 15px;
+  padding-bottom: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  color:black;
+  background-color: white;
+  /* background-image: url("../public/Images/52033766931_79be1be305_h.114.jpg"); */
+  background-size: contain;
+  background: linear-gradient(90deg, #00c8ff5b 0%, #92FE9D 100%);
+}
+#back ,h2{
+  display: inline;
+}
+button{
+  border-radius: 7px;
+  background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
+  box-shadow: 0px 0.5px 0.6px;
+  
+}
+.col{
+  background: linear-gradient(90deg, rgba(0, 200, 255, 0.144) 22%, rgba(146,254,157,0.6937354988399071) 100%);
+
+}
+form , .list-group{
+  padding-top: 5px;
+  border-radius: 8px;
+  font-family: 'Josefin Sans';
+  font-size: calc(15px + 0.390625vw);
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 20px;
+  background-color: rgba(248, 248, 248, 0.596);
+}
+h2 {
+  padding :15px ;
+  font-weight: bold;
+  font-family: 'Josefin Sans';
+}
+
+
+#Lgbtn, #Regbtn , #Gstbts {
+  border-radius: 7px;
+  background-color: white;
+  border-color: black;
+  color: black;
+  box-shadow: 0px 0.5px 0.6px;
+}
+#Lgbtn:hover ,#Regbtn:hover , #Gstbts:hover{
+  transition-duration: 0.2s;
+  box-shadow: 0px 2px 2.4px;
+}
+
+#Regbtn , #Gstbts ,#or{
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  
+}
+#or{
+  font-size: calc(15px + 0.390625vw);
+  font-weight: bold;
+}
+#Lgdiv {
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+#gstorreg{
+  padding-left: 2vw;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+#formlabels{
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#notauser{
+  font-family: 'Josefin Sans';
+  font-size: calc(15px + 0.390625vw);
+  font-weight: bold;
+  padding-left: 2vw;
+}
+#qtydiv{
+  align-self: end;
+  margin-bottom: 5px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  height: 30px
+}
+#qtynum{
+  font-size: 20px;
+  padding: 0;
+}
+#inc-dec{
+  font-size: 30px;
+  font-weight:350;
+}
+
+#general{
+  font-family: 'Josefin Sans';
+  padding-left: 20%;
+  padding-right: 20%;
+}
+#navbuttons{
+  display: flex;
+  flex-direction: column;
+  margin-left: "100px";
+  background-color: rgba(248, 248, 248, 0.596);
+  border-radius: 8px;
+  padding-bottom: 100%;
+}
+
+#listitemparent{
+  margin-left: 8px;
+}
+
+
+#addstuff{
+  font-weight: 100;
+  font-size: 45px;
+  border-color: black;
+  padding-left: 25%;
+  padding-right: 25%;
+  height: 100px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  
+}
+#addstuffdiv{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+
+#itemdiv{
+  padding-left: 3px;
+  padding-top: 5px;
+  padding-right: 2px;
+  justify-content: center;
+  align-items: center;
+  background-color: #013ff86e;
+  border-color: white;
+  border-radius: 8px;
+  height: 100px;
+}
+#listitem{
+border-color: black;
+}
+
+
+#itemdesc{
+  background-color: rgba(255, 255, 255, 0.466);
+  border-radius: 7px;
+  height: 65px;
+  width: 70%;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+#itemprice{
+  float:right;
+  margin-bottom: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-radius: 7px;
+  position: relative;
+  line-height: 20px;
+}
+#itemname{
+  border-radius: 5px;
+  margin-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 10px;
+  width: fit-content;
+  font-weight: 500;
+  font-size: large;
+  line-height: 20px;
+}
+#itemname,#itemprice{
+  display: inline-block;
+}
+
+#img{
+  float: left;
+  width: 90px;
+  height: 90px;
+  vertical-align: middle;
+  border-radius: 7px;
+}
+#delitem{
+  width: 30px;
+  height: 30px;
+  float: right;
+  background-color: rgba(255, 59, 59, 0.87);
+  font-size: 20px;
+  
+}
+#delitem, #itemdesc{
+  display: inline-block;
+}
+#saveitem{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#buts{
+  float: right;
+  display: flex;
+  flex-direction: column;
+}
+.card.horizontal{
+  display: flex;
+  flex:1 1 auto;
+}
+
+#tibform-group{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5px;
+  
+}
+/* ORDER LOG PAGE */
+#orderdiv{
+  margin-bottom: 10px;
+  
+}
+#order{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  border-radius: 7px;
+  background-color: rgba(255, 255, 255, 0.459);
+  border-style:solid;
+  border-color: rgba(0, 0, 0, 0.103);
+}
+#orderheader{
+  display: flex;
+  flex-direction: row;
+}
+#table{
+  width: 140px;
+}
+#table,#status{
+  margin-top: 3px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+
+  font-size: 20px;
+}
+
+#obl1{
+  display: flex;
+  flex-direction: row;
+}
+#obl2{
+  display: flex;
+  flex-direction: row;
+}
+#orderbutton{
+  background-color: black;
+  width: 135px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  border-color: black;
+  border-radius: 15px;
+}
+#formlabetable{
+  width: 200px;
+}
