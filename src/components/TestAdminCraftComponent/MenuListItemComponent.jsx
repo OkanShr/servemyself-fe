@@ -113,7 +113,8 @@ useEffect(() =>{
         return(
         <div  id='qtydiv'>
           <button type='button' id='inc-dec'  onClick={() => handleDecrement(props.item)} className='input-group-text'>-</button>
-          <div id='qtynum' className='form-control text-center'>{!trayitems  ? "" :trayitems[trayitems.indexOf(props.item,0)].quantity }</div>
+          <div id='qtynum' className='form-control text-center'>{!trayitems  ? "" 
+          :trayitems[trayitems.indexOf(props.item, 0)].quantity }</div>
           <button type='button' id='inc-dec' onClick={() => handleIncrement(props.item)} className='input-group-text'>+</button>
         </div>
         )

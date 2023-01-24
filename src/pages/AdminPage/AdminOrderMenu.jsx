@@ -48,7 +48,6 @@ export const AdminOrderMenu = () => {
   const updateOrderList = () => {
     getOrders(loginDetails.token).then((response) => {
       setOrders(response.data);
-      // console.log(response.data);
     });
   };
   useEffect(() => {
