@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 export const MenuUpdateComponent = (props) => {
-  const { showUpdate, setShowUpdate } = props;
+  const { showUpdate, setShowUpdate ,categories} = props;
   const {id , name , description , price , category} = props.item;
 
 
@@ -16,7 +16,6 @@ export const MenuUpdateComponent = (props) => {
   });
 
   const handleClose = () => setShowUpdate(false);
-
 return (
   <Modal
     show={showUpdate}
@@ -74,6 +73,19 @@ return (
 
         <Form.Group>
           <Form.Label size="lg">Item Category</Form.Label>
+          <Form.Select
+            required
+            size="lg"
+            value={values.category}
+            onChange={(e) => setValues({...values,category: e.target.value })}
+          >
+            {categories?categories.map((x,idx)=>(
+              <option key={idx} values={x}>
+                {x.categoryname}
+              </option>
+            )):""}
+          </Form.Select>
+          {/* <Form.Label size="lg">Item Category</Form.Label>
           <Form.Control
             onChange={(e) =>
               setValues({ ...values, category: e.target.value })
@@ -82,7 +94,7 @@ return (
             placeholder="Category"
             size="lg"
             maxLength="20"
-          />
+          /> */}
         </Form.Group>
 
 
@@ -100,7 +112,7 @@ return (
         
         <div id="saveitem">
           <Button variant="primary" required type="submit" size="md">
-            Add
+            Save
           </Button>
         </div>
       </Form>

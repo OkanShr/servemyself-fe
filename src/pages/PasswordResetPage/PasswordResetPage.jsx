@@ -31,7 +31,7 @@ export const PasswordResetPage = () => {
     }
   };
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" id="body">
       <h2 className="mt-5">Reset Your Password</h2>
       <Form className="mt-3" onSubmit={(e) => resetPassword(e)}>
         {!values.emailSent ? (

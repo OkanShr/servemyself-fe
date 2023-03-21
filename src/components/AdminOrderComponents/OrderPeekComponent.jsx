@@ -1,10 +1,9 @@
-import React, {useState} from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 
 export const OrderPeekComponent = (props) => {
-  const { showPeek, setShowPeek,order,ordertable,orderdate } = props;
+  const { showPeek, setShowPeek,order,ordertable } = props;
   const handleClose = () => setShowPeek(false);
-  const [totalprice,setTotalPrice] = useState(0)
   
   function getTotal(){
     let totalprice = 0;
@@ -27,10 +26,10 @@ return (
       <Modal.Title>Order of Table {ordertable}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      {order.map(({id,quantity, name ,price})=>(
+      {order.map(({id,quantity, name ,price,description})=>(
         
         <div key={id}>
-          <p id="itemname">{quantity}x {name}</p>
+          <p id="itemname">{quantity}x {name} Notes: {description}</p>
           <p id="itemprice">{price*quantity}$</p>
         </div>
 

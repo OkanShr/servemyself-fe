@@ -1,3 +1,5 @@
+import "../../App.css"
+
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -44,10 +46,10 @@ export const SuperAdminUserMenu = () => {
   };
 
   return (
-    <div className="m-3">
+    <div className="m-3" id="body">
       <div>
 
-      <Button id="btn" onClick={logoutFunction}>Logout</Button>
+      <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
 
       <h1>SuperAdminPage</h1>
 
@@ -58,7 +60,7 @@ export const SuperAdminUserMenu = () => {
       <div>
 
 
-      <Button id="btn"
+      <Button id="Lgbtn"
         onClick={() => navigate("../home")}
         className="mb-3 d-flex btn-success"
         style={{ marginLeft: "auto" }}
@@ -66,7 +68,7 @@ export const SuperAdminUserMenu = () => {
         Main Menu
       </Button>
 
-      <Button id="btn"
+      <Button id="Lgbtn"
         onClick={() => setShowCreate(true)}
         className="mb-3 d-flex btn-success"
         style={{ marginLeft: "auto" }}

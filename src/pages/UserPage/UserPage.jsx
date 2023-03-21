@@ -5,26 +5,31 @@ import { useSelector } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { Button } from "react-bootstrap";
 import { MenuListComponent } from "../../components/TestAdminCraftComponent/MenuListComponent";
-
 import { getMenu } from '../../api/menuApi';
-
+import {CategoryNavbar} from '../../components/TestAdminCraftComponent/CategoryNavbar';
+import { getCategory } from '../../api/menuApi';
 
 export const UserPage = () => {
   const loginDetails = useSelector((state) => state.auth.value);
   const navigate = useNavigate();
+  const page = 'viewmenu';
 
-
-  const logoutFunction = () => {  
-    
-  }
   useEffect(() => {
     updateItemList();
+    updateCategoryList();
   },[])
 
+  const[categories,setCategories]=useState([]);
   const [items, setItems] = useState([]);
   const[trayitems,setTrayItem]=useState([]);
+  const[selectedcategory,setSelectedCategory]= useState('');
 
 
+  const updateCategoryList =()=>{
+    getCategory(loginDetails.token).then((response)=>{
+      setCategories(response.data);
+    })
+  }
 
   const updateItemList = () => {
     getMenu(loginDetails.token).then((response) =>{
@@ -33,22 +38,34 @@ export const UserPage = () => {
     });
   };
 
+  useEffect(() => {
+    console.log(selectedcategory)
+  },[selectedcategory])
+
   
+
+
+
   return (
     <div className="m-3" id='body'>
       <Button id="Lgbtn" onClick={() => navigate("../login")}>Logout</Button>
       <h1>UserPage</h1>
       
       <UserDetailsComponent user={loginDetails.user} />
-
+      <CategoryNavbar 
+      categories={categories}
+      selectedcategory={selectedcategory}
+      setSelectedCategory={setSelectedCategory}
+      />
       <MenuListComponent 
         updateItemList={updateItemList}
         items={items}
         trayitems={trayitems}
         setTrayItem={setTrayItem}
         loginDetails={loginDetails}
+        selectedcategory={selectedcategory}
+        page={page}
       />
-
       <div className="pt-3 float-end footer sticky-bottom navbar-fixed-bottom">
         <Button  onClick={() => navigate("../menu/waiterstray")}>Devam</Button>
       </div>

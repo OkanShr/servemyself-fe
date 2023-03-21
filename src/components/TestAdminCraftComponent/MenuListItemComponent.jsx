@@ -1,21 +1,19 @@
 
 import React, { useState, forceUpdate} from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
-
 import { deleteItem, updateItem} from "../../api/menuApi";
 import {MenuUpdateComponent} from "./MenuUpdateComponent"
-import {Button,Card,Col} from 'react-bootstrap';
+import {Button,Card,Col,Form ,Row} from 'react-bootstrap';
 import { useEffect } from 'react';
 
 
 
 export const MenuListItemComponent = (props) => {
-  const { loginDetails, updateItemList, trayitems,setTrayItem,update,setUpdate,page } = props;
-  const {  name , description , price , id} = props.item;
+  const { loginDetails, updateItemList, trayitems,setTrayItem,update,setUpdate,page ,categories} = props;
+  const {  name , description , price , id, category} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
-
   const [showAdd,setShowAdd]= useState(true)
-
+  const [ordercomment,setOrderComment] = useState('')
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const save = (e, values) => {
@@ -36,9 +34,7 @@ export const MenuListItemComponent = (props) => {
     deleteItem(id, loginDetails.token).then(() => {
       updateItemList();
     });
-    
   };
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 useEffect(() => {
@@ -47,7 +43,6 @@ useEffect(() => {
   }
   const traydata = window.localStorage.getItem('trayitems');
   console.log("traydata",traydata)
-  
 },[])
 
 useEffect(() =>{
@@ -58,11 +53,10 @@ useEffect(() =>{
   function handleAdd(){
     setShowAdd(!showAdd)
     props.item.quantity = 1;
-    setTrayItem(prevState => [...prevState, props.item])
-    console.log("Quantity of: ", props.item, " is ",props.item.quantity )
-    console.log(trayitems)
+    setTrayItem(prevState => [...prevState, props.item]);
+    console.log("Quantity of: ", props.item, " is ",props.item.quantity );
+    console.log(trayitems);
   }
-
 
   const handleDecrement = (e) => {
     let index = trayitems.indexOf(e);
@@ -71,7 +65,6 @@ useEffect(() =>{
       trayitems.splice(index,1);
       localStorage.setItem('trayitems',JSON.stringify(trayitems))
       setUpdate(!update)
-      
     }
     if(trayitems[index].quantity < 1 && page!=="tray"){
       trayitems[index].quantity = 0;
@@ -79,15 +72,16 @@ useEffect(() =>{
     }
     setUpdate(!update)
   }
+
   const handleIncrement = (e) => {
     let index = trayitems.indexOf(e);
     trayitems[index].quantity = trayitems[index].quantity + 1
     console.log(trayitems[index].quantity)
     setUpdate(!update)
   }
-  
+  // >>>>>>>>>>>>>>>>>>>>>>>>Render Filters>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   function filterQty(){
-    if(loginDetails.user.role !== "ADMIN" ){
+    if(page === "viewmenu" || page === "tray" ){
       if( showAdd===false ){
         return(
           <Card.Text>{!trayitems  ? price + "₺" : trayitems[trayitems.indexOf(props.item,0)].quantity * price + "₺"}</Card.Text>
@@ -102,7 +96,30 @@ useEffect(() =>{
     }
     else{
       <Card.Text>{price + "₺"}</Card.Text>
-
+    }
+    
+  }
+    // if you're on tray page instead of description you will get to write a comment
+    // for example take an ingredient out of the dish you want
+  function swapCommentDescription(){
+    console.log(page)
+    if(page === "viewmenu" || page === "craftmenu")
+    {
+      return(
+        <Card.Text  className='br-7px mb-0'>{description}</Card.Text>
+      )
+    }
+    if(page === "tray")
+    {
+      let index = trayitems.indexOf(props.item);
+      return(
+        <Form.Control id='itemdesc' onChange={(e) => (
+          (trayitems[index].description = e.target.value),setUpdate(!update),console.log(trayitems[index].description)
+        )}
+        type="text"
+        >
+        </Form.Control>
+      )
     }
     
   }
@@ -140,6 +157,10 @@ useEffect(() =>{
     }
   }
 
+
+
+
+
     return (
 
 
@@ -158,11 +179,10 @@ useEffect(() =>{
             {filterQty()}
           </Card.Body>
           <Card.Body className='pt-0 pb-1 px-1 d-flex flex-row justify-content-between '>
-          <Card.Text id='itemdesc' className='br-7px mb-0'>{description}</Card.Text>
+          {swapCommentDescription()}
 
           {filterButtons()}
           
-
           </Card.Body>
 
           </Col>
@@ -170,11 +190,13 @@ useEffect(() =>{
 
         </Card>
         {/* only for admin */}
+        {/* not iterable error? */}
         <MenuUpdateComponent
           save={save}
           item={props.item}
           showUpdate={showUpdate}
           setShowUpdate={setShowUpdate}
+          categories={categories}
         />
         
       </div>

@@ -3,7 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 
 export const UserUpdateComponent = (props) => {
   const { showUpdate, setShowUpdate } = props;
-  const { id, username, name, surname, mail, role } = props.user;
+  const { id, username, name, surname, mail, role ,password} = props.user;
 
   const [values, setValues] = useState({
     id: id || 0,
@@ -12,6 +12,7 @@ export const UserUpdateComponent = (props) => {
     surname: surname || "",
     mail: mail || "",
     role: role || "",
+    password: password
   });
 
   const handleClose = () => setShowUpdate(false);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 export const MenuCraftComponent = (props) => {
-  const { showCraft, setShowCraft, create } = props;
+  const { showCraft, setShowCraft, create,categories } = props;
   // const categories = ["Food" , "Drinks"];
   // categories.push("Desserts");
   
@@ -74,15 +74,18 @@ export const MenuCraftComponent = (props) => {
 
           <Form.Group>
             <Form.Label size="lg">Item Category</Form.Label>
-            <Form.Control
-              onChange={(e) =>
-                setValues({ ...values, category: e.target.value })
-              }
-              value={values.category}
-              placeholder="Category"
-              size="lg"
-              maxLength="20"
-            />
+            <Form.Select
+            
+            size="lg"
+            value={values.category}
+            onChange={(e) => setValues({...values,category: e.target.value })}
+          >
+            {categories.map((x,idx)=>(
+              <option key={idx} values={x}>
+                {x.categoryname}
+              </option>
+            ))}
+          </Form.Select>
           </Form.Group>
 
 

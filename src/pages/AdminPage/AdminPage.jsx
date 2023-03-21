@@ -1,8 +1,8 @@
 import '../../App.css'
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router";
-import { login, logout } from "../../store/authentication";
+import { useNavigate } from "react-router";
+import { logout } from "../../store/authentication";
 import { useSelector } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 

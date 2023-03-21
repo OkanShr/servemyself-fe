@@ -16,49 +16,50 @@ export const MenuWaitersTray = () => {
   const [update,setUpdate] = useState(true);
   const [showMakeOrder,setShowMakeOrder] = useState(false)
   const [trayitems, setTrayItem] = useState([]);
-  const [orderitems,setOrder] = useState({
+  const [orderinfo,setOrderInfo] = useState({
     username : "",
     orderlist : "",
     orderstatus : "",
     ordertable: "",
     orderdate : ""
-  })
+  });
 
   useEffect(() => {
     getTray();
     prepOrder();
   },[])
+
   useEffect(()=>{
     date = Date().toLocaleString()
     orderlist = JSON.stringify(trayitems)
-    setOrder({...orderitems, username:loginDetails.user.username, orderlist:orderlist, orderstatus:"Pending", table:"", orderdate:date})
+    setOrderInfo({...orderinfo, username:loginDetails.user.username, orderlist:orderlist, orderstatus:"Pending", table:"", orderdate:date})
   },[update])
 
-
   let traydata = ""
+
   const getTray = (()=> {
     traydata = JSON.parse(localStorage.getItem('trayitems'));
     if(traydata) {
       console.log(traydata)
       setTrayItem(traydata);
     }
-
   });
 
   const prepOrder = () =>{
     setUpdate(!update)
   }
   const sendOrder = () =>{
-    if(orderitems.ordertable !== ""){
-      createOrder(orderitems,loginDetails.token)
+    if(orderinfo.ordertable !== ""){
+      console.log(orderinfo)
+      createOrder(orderinfo,loginDetails.token)
       navigate("../../home")
-      window.alert('Order Successfull. You will get notified by the waiter soon. ',orderitems.orderdate)
+      window.alert('Order Successfull. You will get notified by the waiter soon. ',orderinfo.orderdate)
     }
     else{
-      window.alert('You Have Set Table Number First')
+      window.alert('You Have To Set Table Number First')
     }
     
-  }
+  };
   
 
   return (
@@ -69,18 +70,18 @@ export const MenuWaitersTray = () => {
 
 
         <Form id="tibform-group">
-          <Form.Group as={Row} controlId="formtable">
+          <Form.Group controlId="formtable">
           <Form.Label id="formlabetable" column sm={2}>
             Table
           </Form.Label>
           <Col sm={10}>
             <Form.Control  onChange={(e) =>
-              (setOrder({ ...orderitems, ordertable: e.target.value }),
-              console.log(orderitems))
+              (setOrderInfo({ ...orderinfo, ordertable: e.target.value }),
+              console.log(orderinfo))
             }
             type="text" 
             placeholder="Table Number"
-            value={orderitems.ordertable}
+            value={orderinfo.ordertable}
             />
           </Col>
 
@@ -115,6 +116,7 @@ export const MenuWaitersTray = () => {
         trayitems={trayitems}
         setTrayItem={setTrayItem}
         page={page}
+        selectedcategory={''}
       />
 
       <Button id="Lgbtn" onClick={()=> sendOrder()}>Make Order!</Button>

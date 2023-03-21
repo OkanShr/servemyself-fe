@@ -33,11 +33,36 @@ export const createItem = (post, token) => {
     },
   });
 };
+// Categoy
 
-// export const updateTray = (post, token) => {
-//   return axiosInstance.post("api/tray", post, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
+export const getCategory = (token) => {
+  return axiosInstance.get("/api/category", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+    
+  });
+};
+
+export const createCategory = (post, token) => {
+  return axiosInstance.post("/api/category/create-category",post,{
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+export const updateCategory = (post,token) => {
+  return axiosInstance.put("/api/category",post,{
+    headers: {
+      Authorization:`Bearer ${token}`
+    }
+  });
+};
+
+export const deleteCategory = (id, token) => {
+  return axiosInstance.delete("/api/category/" + id,{
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

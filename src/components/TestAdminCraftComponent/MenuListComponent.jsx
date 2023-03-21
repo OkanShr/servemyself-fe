@@ -3,7 +3,7 @@ import { MenuListItemComponent } from "./MenuListItemComponent";
 import {useState} from 'react'
 
 export const MenuListComponent = (props) => {
-  const { loginDetails, updateItemList, items,trayitems,setTrayItem,page} = props;
+  const { loginDetails, updateItemList, items,trayitems,setTrayItem, page , categories ,selectedcategory ,ordercomment,setOrderComment} = props;
 
   //this is just a usestate to rerender- fixes the bug where numbers didnt change
   const [update,setUpdate] = useState(false)
@@ -15,8 +15,22 @@ export const MenuListComponent = (props) => {
         
       items?
       items
-        .map((x) => (
-          
+      .slice(0).reverse().map((x) => {
+        if(selectedcategory === "")
+          return(
+          <MenuListItemComponent key={x.id}
+            updateItemList={updateItemList}
+            loginDetails={loginDetails}
+            item={x}
+            trayitems={trayitems}
+            page={page}
+            setTrayItem={setTrayItem}
+            update={update}
+            setUpdate={setUpdate}
+            categories={categories}
+          />)
+        if(selectedcategory === x.category  )
+          return(
             <MenuListItemComponent key={x.id}
               updateItemList={updateItemList}
               loginDetails={loginDetails}
@@ -24,12 +38,28 @@ export const MenuListComponent = (props) => {
               trayitems={trayitems}
               page={page}
               setTrayItem={setTrayItem}
-              // getIndex={getIndex}
               update={update}
               setUpdate={setUpdate}
+              categories={categories}
             />
-          
-        )): ""}
+          )
+        
+        if(loginDetails.user.role==="ADMIN")
+        return(
+          <MenuListItemComponent key={x.id}
+              updateItemList={updateItemList}
+              loginDetails={loginDetails}
+              item={x}
+              trayitems={trayitems}
+              page={page}
+              setTrayItem={setTrayItem}
+              update={update}
+              setUpdate={setUpdate}
+              categories={categories}
+            />
+        )
+      }
+      ): ""}
     </ListGroup>
   );
 };

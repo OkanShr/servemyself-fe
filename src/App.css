@@ -25,9 +25,6 @@
 }
 button{
   border-radius: 7px;
-  background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
-  box-shadow: 0px 0.5px 0.6px;
-  
 }
 .col{
   background: linear-gradient(90deg, rgba(0, 200, 255, 0.144) 22%, rgba(146,254,157,0.6937354988399071) 100%);
@@ -56,6 +53,7 @@ h2 {
   border-color: black;
   color: black;
   box-shadow: 0px 0.5px 0.6px;
+  background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
 }
 #Lgbtn:hover ,#Regbtn:hover , #Gstbts:hover{
   transition-duration: 0.2s;
@@ -106,8 +104,10 @@ h2 {
   padding: 0;
 }
 #inc-dec{
+  background-color: rgba(255, 255, 255, 0.404);
   font-size: 30px;
   font-weight:350;
+  border-color: black;
 }
 
 #general{
@@ -128,23 +128,15 @@ h2 {
   margin-left: 8px;
 }
 
-
 #addstuff{
-  font-weight: 100;
-  font-size: 45px;
-  border-color: black;
-  padding-left: 25%;
-  padding-right: 25%;
-  height: 100px;
-  margin-right: 20px;
-  margin-bottom: 5px;
-  
+  width: fit-content;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
+
 #addstuffdiv{
-  display: flex;
   justify-content: center;
   flex-direction: column;
-  
 }
 
 #itemdiv{
@@ -261,7 +253,6 @@ border-color: black;
   margin-top: 3px;
   margin-left: 15px;
   margin-bottom: 5px;
-
   font-size: 20px;
 }
 
@@ -274,13 +265,122 @@ border-color: black;
   flex-direction: row;
 }
 #orderbutton{
-  background-color: black;
+  color: black;
   width: 135px;
   margin-left: 15px;
   margin-bottom: 10px;
   border-color: black;
   border-radius: 15px;
+  background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
 }
 #formlabetable{
   width: 200px;
+}
+#profileheader{
+  color: aliceblue;
+}
+#btn{
+  
+  border-radius: 7px;
+  background-color: white;
+  border-color: white;
+  color: black;
+  box-shadow: 0px 0.5px 0.6px;
+}
+#page{
+
+  background-color: bisque;
+}
+#gen{
+  background-color: bisque;
+  padding-left: 20%;
+  padding-right: 30.5%;
+  padding-bottom: 100%;
+}
+#navbuttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: "auto";
+  background-color: rgba(248, 248, 248, 0.596);
+  border-radius: 8px;
+  padding-bottom: 100%;
+}
+#navbuttonset1{
+  margin-left: "auto";
+  display:inline-block;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+  border-radius: 8px;
+}
+#navbuttonset2{
+  margin-left: "auto";
+  display:inline-block;
+  background-color: blanchedalmond;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+}
+#navbuttonset3{
+  margin-left: "auto";
+  display:inline-block;
+  background-color: blanchedalmond;
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 100%;
+}
+/* Category POPUP */
+#CategoryItem{
+  margin-left: 5px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  
+
+}
+#AddCategory{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#CategoryDeleteButton{
+  float: right;
+}
+#CategoryName{
+  font-size: 20px;
+  padding-left: 5px;
+  width: 500px;
+}
+#CategoryEditInput{
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+#CategoryNavbar{
+  position:sticky;
+  padding: 3px;
+  margin-bottom: 5px;
+  background-color: rgba(255, 255, 255, 0.342);
+
+}
+#CategoryNavButton{
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  transition: opacity 0.5s ease-in-out;
+  display: inline-block;
+}
+#CategoryNavButton:hover{
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
 }

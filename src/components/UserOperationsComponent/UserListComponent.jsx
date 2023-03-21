@@ -6,7 +6,7 @@ export const UserListComponent = (props) => {
   const { loginDetails, updateUserList, users } = props;
 
   return (
-    <ListGroup>
+    <ListGroup className="gap-1 p-2">
       {users
         .slice(1)
         .map((x) => (
