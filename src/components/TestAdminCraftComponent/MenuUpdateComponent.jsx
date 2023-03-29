@@ -3,19 +3,22 @@ import { Button, Form, Modal } from "react-bootstrap";
 
 export const MenuUpdateComponent = (props) => {
   const { showUpdate, setShowUpdate ,categories} = props;
-  const {id , name , description , price , category} = props.item;
+  const {id , name , description , price , category, image_url} = props.item;
 
-
+  const [selectedimage, setSelectedImage] = useState(null);
   const [values, setValues] = useState({
     id: id || 0,
     name: name || "",
     description: description || "",
     price: price || "",
     category: category || "",
-    imageurl: ""
+    image_url: image_url || ""
   });
 
-  const handleClose = () => setShowUpdate(false);
+  const handleClose = () => {
+    setShowUpdate(false)
+    setSelectedImage(null)
+  };
 return (
   <Modal
     show={showUpdate}
@@ -85,33 +88,41 @@ return (
               </option>
             )):""}
           </Form.Select>
-          {/* <Form.Label size="lg">Item Category</Form.Label>
-          <Form.Control
-            onChange={(e) =>
-              setValues({ ...values, category: e.target.value })
-            }
-            value={values.category}
-            placeholder="Category"
-            size="lg"
-            maxLength="20"
-          /> */}
         </Form.Group>
 
 
         
         {/* CURRENTLY FILE UPLOAD IS DISABLED DUE TO RESTRICTION TO LOCAL FILES */}
         <Form.Group>
-          <Form.Label size="lg">Select Picture</Form.Label>
-          {/* <input type="file" id="img"  onChange={(e) => setValues({ ...values, pictureurl: e.target.value })}></input> */}
-          {/* <img src={values.pictureurl}></img> */}
-          <img id="img" height={"150px"} src={require("./foodpicture.jpg")}  />
           
-        
+          <Form.Label size="lg">Item Image</Form.Label>
+          {/* <img id="img" height={"150px"} src={require("./foodpicture.jpg")}  /> */}
+          {selectedimage && (
+        <div>
+          <img
+            alt="not found"
+            width={"250px"}
+            src={URL.createObjectURL(selectedimage)}
+          />
+          <br />
+          <Button variant="primary" className="mt-2 mb-2" onClick={() => setSelectedImage(null)}>Remove</Button>
+        </div>
+          )}
+          <input
+          placeholder=""
+            type="file"
+            name="itemImage"
+            onChange={(event) => {
+              console.log(event.target.files[0].name);
+              setSelectedImage(event.target.files[0]);
+              setValues({...values,image_url: event.target.files[0].name})
+              console.log(values)
+            }}
+          />
+          
         </Form.Group>
-        
-        
         <div id="saveitem">
-          <Button variant="primary" required type="submit" size="md">
+          <Button variant="primary" required type="submit" size="md" className="mt-2">
             Save
           </Button>
         </div>

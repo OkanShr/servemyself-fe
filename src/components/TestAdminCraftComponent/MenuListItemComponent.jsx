@@ -3,17 +3,16 @@ import React, { useState, forceUpdate} from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { deleteItem, updateItem} from "../../api/menuApi";
 import {MenuUpdateComponent} from "./MenuUpdateComponent"
-import {Button,Card,Col,Form ,Row} from 'react-bootstrap';
+import {Button,Card,Col,Form} from 'react-bootstrap';
 import { useEffect } from 'react';
 
 
 
 export const MenuListItemComponent = (props) => {
   const { loginDetails, updateItemList, trayitems,setTrayItem,update,setUpdate,page ,categories} = props;
-  const {  name , description , price , id, category} = props.item;
+  const {  name , description , price , id, category,image_url} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
   const [showAdd,setShowAdd]= useState(true)
-  const [ordercomment,setOrderComment] = useState('')
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   const save = (e, values) => {

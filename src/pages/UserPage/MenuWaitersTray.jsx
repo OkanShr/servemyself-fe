@@ -14,7 +14,7 @@ export const MenuWaitersTray = () => {
   let orderlist = ""
   let date = ""
   const [update,setUpdate] = useState(true);
-  const [showMakeOrder,setShowMakeOrder] = useState(false)
+  // const [showMakeOrder,setShowMakeOrder] = useState(false)
   const [trayitems, setTrayItem] = useState([]);
   const [orderinfo,setOrderInfo] = useState({
     username : "",

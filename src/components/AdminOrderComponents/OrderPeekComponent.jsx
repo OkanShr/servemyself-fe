@@ -29,7 +29,7 @@ return (
       {order.map(({id,quantity, name ,price,description})=>(
         
         <div key={id}>
-          <p id="itemname">{quantity}x {name} Notes: {description}</p>
+          <p id="itemname">{quantity} x {name} Notes: {description}</p>
           <p id="itemprice">{price*quantity}$</p>
         </div>
 
