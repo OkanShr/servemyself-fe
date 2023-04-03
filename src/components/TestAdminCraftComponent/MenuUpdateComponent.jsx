@@ -6,6 +6,7 @@ export const MenuUpdateComponent = (props) => {
   const {id , name , description , price , category, image_url} = props.item;
 
   const [selectedimage, setSelectedImage] = useState(null);
+  const path = "A:/servemyself-fe/public/Images/";
   const [values, setValues] = useState({
     id: id || 0,
     name: name || "",
@@ -19,6 +20,18 @@ export const MenuUpdateComponent = (props) => {
     setShowUpdate(false)
     setSelectedImage(null)
   };
+
+  const fileUploadHandler = (e) => {
+    if(e.type === "image/jpg" || e.type === "image/png" || e.type === "image/jpeg"){
+      setSelectedImage(e);
+      setValues({...values,image_url: (path + e.name)})
+      console.log(e)
+      
+    }
+    else{console.log("not an image")}
+  };
+
+
 return (
   <Modal
     show={showUpdate}
@@ -100,7 +113,7 @@ return (
           {selectedimage && (
         <div>
           <img
-            alt="not found"
+
             width={"250px"}
             src={URL.createObjectURL(selectedimage)}
           />
@@ -113,10 +126,7 @@ return (
             type="file"
             name="itemImage"
             onChange={(event) => {
-              console.log(event.target.files[0].name);
-              setSelectedImage(event.target.files[0]);
-              setValues({...values,image_url: event.target.files[0].name})
-              console.log(values)
+              fileUploadHandler(event.target.files[0])
             }}
           />
           
