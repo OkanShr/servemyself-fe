@@ -10,6 +10,7 @@
 }
 
 #body {
+  user-select: none;
   padding-top: 15px;
   padding-bottom: 100%;
   padding-left: 10px;

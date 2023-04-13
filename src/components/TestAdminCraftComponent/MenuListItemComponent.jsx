@@ -101,7 +101,6 @@ useEffect(() =>{
     // if you're on tray page instead of description you will get to write a comment
     // for example take an ingredient out of the dish you want
   function swapCommentDescription(){
-    console.log(page)
     if(page === "viewmenu" || page === "craftmenu")
     {
       return(
@@ -155,7 +154,15 @@ useEffect(() =>{
     </div>)
     }
   }
-
+    function getImage(){
+      if(image_url){
+        
+        return 'foodpicture.jpg'
+      }
+      else{
+        return 'foodpicture.jpg'
+      }
+    }
 
 
 
@@ -168,7 +175,7 @@ useEffect(() =>{
         <Card className="flex-fill d-flex flex-row card-horizontal" id="listitem">
           <Card.Img
           variant='left'
-          src={require('./foodpicture.jpg')}
+          src={require("../../../public/Images/" + getImage())}
           width='100px'
           style={{objectFit:"cover"}}
           />

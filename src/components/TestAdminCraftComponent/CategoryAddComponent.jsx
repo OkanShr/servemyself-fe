@@ -31,7 +31,7 @@ export const CategoryAddComponent = (props) => {
      <Button onClick={createNewCategory}>Add Category</Button>
       {
         categories?categories.slice(0).reverse().map((x)=>(
-          <CategoryItemComponent
+          <CategoryItemComponent key={x.id}
           category={x}
           loginDetails={loginDetails}
           updateCategoryList={updateCategoryList}

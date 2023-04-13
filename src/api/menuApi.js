@@ -1,3 +1,4 @@
+import axios from "axios";
 import { instance as axiosInstance } from "./apiInterceptor";
 
 export const getMenu = (token) => {
@@ -13,7 +14,6 @@ export const updateItem = (post, token) => {
   return axiosInstance.put("/api/menu", post, {
     headers: {
       Authorization: `Bearer ${token}`
-      
     },
   });
 };
@@ -66,3 +66,4 @@ export const deleteCategory = (id, token) => {
     }
   })
 }
+
