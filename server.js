@@ -1,3 +1,13 @@
+// current timestamp in milliseconds
+let ts = Date.now();
+
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
+let today = year + "-" + month + "-" + date
+// prints date & time in YYYY-MM-DD format
+
 var express = require('express');
 var app = express();
 var multer = require('multer')
@@ -7,10 +17,10 @@ app.use(cors())
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-  cb(null, 'public/Images')
+  cb(null, 'public/Images/')
 },
 filename: function (req, file, cb) {
-  cb(null,file.originalname )
+  cb(null, today + "-" + file.originalname )
 }
 })
 

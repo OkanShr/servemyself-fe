@@ -7,14 +7,13 @@ import {Button,Card,Col,Form} from 'react-bootstrap';
 import { useEffect } from 'react';
 
 
-
 export const MenuListItemComponent = (props) => {
   const { loginDetails, updateItemList, trayitems,setTrayItem,update,setUpdate,page ,categories} = props;
   const {  name , description , price , id, category,image_url} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
   const [showAdd,setShowAdd]= useState(true)
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+  
   const save = (e, values) => {
     e.preventDefault();
     console.log(values);
@@ -154,16 +153,17 @@ useEffect(() =>{
     </div>)
     }
   }
-    function getImage(){
-      if(image_url){
-        
-        return 'foodpicture.jpg'
-      }
-      else{
-        return 'foodpicture.jpg'
-      }
+    
+  function showImageUrl(){
+    if(image_url){
+      console.log(image_url)
+    
+      return ('/Images/'+ image_url)
     }
-
+    else{
+      return ('/Images/foodpicture.jpg')
+    }
+  }
 
 
 
@@ -175,9 +175,10 @@ useEffect(() =>{
         <Card className="flex-fill d-flex flex-row card-horizontal" id="listitem">
           <Card.Img
           variant='left'
-          src={require("../../../public/Images/" + getImage())}
-          width='100px'
-          style={{objectFit:"cover"}}
+          src={showImageUrl()}
+          width='150px'
+          height='100px'
+          style={{objectFit:"contain"}}
           />
           <Col>
           <Card.Body className='d-flex flex-row align-items-baseline justify-content-between pt-1 px-1 pb-0'>
@@ -186,9 +187,7 @@ useEffect(() =>{
           </Card.Body>
           <Card.Body className='pt-0 pb-1 px-1 d-flex flex-row justify-content-between '>
           {swapCommentDescription()}
-
           {filterButtons()}
-          
           </Card.Body>
 
           </Col>

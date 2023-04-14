@@ -2,6 +2,18 @@ import React, {useState} from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+let ts = Date.now();
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
+// prints date & time in YYYY-MM-DD format used for uploading files
+let today = year + "-" + month + "-" + date
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
 export const MenuUpdateComponent = (props) => {
   const { showUpdate, setShowUpdate ,categories} = props;
   const {id , name , description , price , category, image_url} = props.item;
@@ -26,7 +38,7 @@ export const MenuUpdateComponent = (props) => {
     if(typeof(e) !== 'undefined'){
       if(e.type === "image/jpg" || e.type === "image/png" || e.type === "image/jpeg"){
         setSelectedImage(e);
-        setValues({...values,image_url: (e.name)})
+        setValues({...values,image_url: (today + "-" + e.name)})
         
       }
       else{console.log("not an image")}
@@ -45,16 +57,21 @@ export const MenuUpdateComponent = (props) => {
       'file',
       selectedimage,
     );
-   
-    // Details of the uploaded file
     
-    
-    
-    // Send formData object
-    axios.post("http://localhost:3001/upload", formData,{})
+
+    try{
+      axios.post("http://localhost:3001/upload", formData,{})
       .then(res => { 
         console.log(res.statusText)
       })
+    }
+    catch(e){console.error(e)}
+    
+        
+    
+
+    // Send formData object
+    
   };
 
 

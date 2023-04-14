@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import axios from "axios";
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+let ts = Date.now();
+let date_ob = new Date(ts);
+let date = date_ob.getDate();
+let month = date_ob.getMonth() + 1;
+let year = date_ob.getFullYear();
+// prints date & time in YYYY-MM-DD format used for uploading files
+let today = year + "-" + month + "-" + date
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
 export const MenuCraftComponent = (props) => {
   const { showCraft, setShowCraft, create,categories } = props;
@@ -17,7 +30,74 @@ export const MenuCraftComponent = (props) => {
   const handleClose = () => {
     setShowCraft(false)
     setSelectedImage(null)
+    
   };
+
+
+  const fileUploadHandler = (e) => {
+    if(typeof(e) !== 'undefined'){
+      if(e.type === "image/jpg" || e.type === "image/png" || e.type === "image/jpeg"){
+        setSelectedImage(e);
+        setValues({...values,image_url: (today + "-" + e.name)})
+        console.log(today)
+      }
+      else{console.log("not an image")}
+    }
+    else{console.log("Image undefined")}
+    
+  };
+
+  const onFileUpload = () => {
+     
+    // Create an object of formData
+    const formData = new FormData();
+   
+    // Update the formData object
+    formData.append(
+      'file',
+      selectedimage,
+    );
+    
+
+    try{
+      axios.post("http://localhost:3001/upload", formData,{})
+      .then(res => { 
+        console.log(res.statusText)
+      })
+    }
+    catch(e){console.error(e)}
+    
+        
+    
+
+    // Send formData object
+    
+  };
+
+
+  function showSelectedImage (e){
+    if(typeof(e) !== 'undefined' ){
+      return(
+        <img
+        width={"250px"}
+        src={URL.createObjectURL(e)}
+      />
+      )
+    
+    }
+    else{
+      return(
+      <img
+        width={"250px"}
+        src={require('./foodpicture.jpg')}
+      />
+      )
+      
+    }
+  }
+
+
+
 
   return (
     <Modal
@@ -30,7 +110,7 @@ export const MenuCraftComponent = (props) => {
         <Modal.Title>Add Item</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={(e) => create(e, values)}>
+        <Form onSubmit={(e) => {create(e, values); onFileUpload(); setValues({})}}>
           <Form.Group size="lg" className="mb-3" controlId="form.itemname">
             <Form.Label size="lg">Item Name</Form.Label>
             <Form.Control
@@ -98,11 +178,7 @@ export const MenuCraftComponent = (props) => {
           {/* <img id="img" height={"150px"} src={require("./foodpicture.jpg")}  /> */}
           {selectedimage && (
         <div>
-          <img
-            alt="not found"
-            width={"250px"}
-            src={URL.createObjectURL(selectedimage)}
-          />
+          {showSelectedImage(selectedimage)}
           <br />
           <Button variant="primary" className="mt-2 mb-2" onClick={() => setSelectedImage(null)}>Remove</Button>
         </div>
@@ -112,10 +188,8 @@ export const MenuCraftComponent = (props) => {
             type="file"
             name="itemImage"
             onChange={(event) => {
-              console.log(event.target.files[0].name);
-              setSelectedImage(event.target.files[0]);
-              setValues({...values,image_url: event.target.files[0].name})
-              console.log(values)
+              fileUploadHandler(event.target.files[0])
+              setSelectedImage(event.target.files[0])
             }}
           />
           
