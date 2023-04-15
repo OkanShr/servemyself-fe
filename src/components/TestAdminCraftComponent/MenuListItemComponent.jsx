@@ -93,7 +93,9 @@ useEffect(() =>{
       }
     }
     else{
-      <Card.Text>{price + "₺"}</Card.Text>
+      return(
+        <Card.Text>{price + "₺"}</Card.Text>
+      )
     }
     
   }
