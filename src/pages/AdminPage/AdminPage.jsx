@@ -19,7 +19,7 @@ export const AdminPage = () => {
     <div className="m-3" id='body'>
       <div>
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
-      <h1>Welcome Shop Owner</h1>
+      <h1 className='mt-2'>Welcome Shop Owner</h1>
       <UserDetailsComponent user={loginDetails.user} />
       </div>
       
@@ -56,7 +56,7 @@ export const AdminPage = () => {
           <div id="navbuttonset1">
 
           <Button id="Lgbtn"
-            // onClick={() => navigate("")}
+            onClick={() => navigate("../admin/qrgenerator")}
           >
             Generate QR
           </Button>

@@ -17,6 +17,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { PasswordResetPage } from "./pages/PasswordResetPage/PasswordResetPage";
 import { MenuWaitersTray } from "./pages/UserPage/MenuWaitersTray";
 import { AdminOrderMenu } from "./pages/AdminPage/AdminOrderMenu";
+import { GenerateQR } from "./pages/AdminPage/GenerateQR";
 
 
 function App() {
@@ -39,9 +40,8 @@ function App() {
           <Route path="/admin/craftmenu" element={<AdminCraftMenu/>} />
           <Route path="/admin/ordermenu" element={<AdminOrderMenu/>}/>
           <Route path="/menu/waiterstray" element={<MenuWaitersTray/>}/>
-          
+          <Route path="/admin/qrgenerator" element={<GenerateQR/>}/>
         </Route>
-        
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -60,7 +60,7 @@ export const MenuUpdateComponent = (props) => {
     
 
     try{
-      axios.post("http://localhost:3001/upload", formData,{})
+      axios.post("http://192.168.1.104:3001/upload", formData,{})
       .then(res => { 
         console.log(res.statusText)
       })

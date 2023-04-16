@@ -10,6 +10,8 @@
 }
 
 #body {
+  font-family: 'Josefin Sans';
+
   user-select: none;
   padding-top: 15px;
   padding-bottom: 100%;
@@ -392,4 +394,17 @@ border-color: black;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
   background: linear-gradient(90deg, rgba(0, 200, 255, 0.329) 22%, rgba(146,254,157,0.6937354988399071) 100%);
+}
+input{
+  border-radius: 7px;
+  border-width: 1px;
+  border-color: grey;
+  border-style:hidden;
+  padding: 2px;
+  padding-left: 8px;
+}
+input:focus{
+  border-top-color: aquamarine;
+  border-width: 2px;
+  border-radius: 7px;
 }
