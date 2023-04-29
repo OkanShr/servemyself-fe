@@ -1,11 +1,8 @@
 import '../../App.css';
 import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
+import { useNavigate } from "react-router";
 import QRCode from 'qrcode'
-import { colors } from '@mui/material';
 
 
 export const GenerateQR = () => {
@@ -25,7 +22,6 @@ export const GenerateQR = () => {
       setQrcode(url)
     })
   } 
-  const loginDetails = useSelector((state) => state.auth.value);
 
   const navigate = useNavigate(); 
 

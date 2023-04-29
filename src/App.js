@@ -18,7 +18,7 @@ import { PasswordResetPage } from "./pages/PasswordResetPage/PasswordResetPage";
 import { MenuWaitersTray } from "./pages/UserPage/MenuWaitersTray";
 import { AdminOrderMenu } from "./pages/AdminPage/AdminOrderMenu";
 import { GenerateQR } from "./pages/AdminPage/GenerateQR";
-
+import {ReadQR} from "./pages/AdminPage/ReadQR"
 
 function App() {
   const loginDetails = useSelector((state) => state.auth.value);
@@ -41,6 +41,8 @@ function App() {
           <Route path="/admin/ordermenu" element={<AdminOrderMenu/>}/>
           <Route path="/menu/waiterstray" element={<MenuWaitersTray/>}/>
           <Route path="/admin/qrgenerator" element={<GenerateQR/>}/>
+          <Route path="/admin/qrreader" element={<ReadQR/>}/>
+
         </Route>
 
         <Route path="/login" element={<LoginPage />} />

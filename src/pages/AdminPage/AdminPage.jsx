@@ -46,7 +46,7 @@ export const AdminPage = () => {
 
           <div id="navbuttonset1">
           <Button id="Lgbtn"
-            onClick={() => navigate("")}
+            onClick={() => navigate("../admin/qrreader")}
           >
             Scan QR
           </Button>
