@@ -3,16 +3,21 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { logout } from "../../store/authentication";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 
 
 export const AdminPage = () => {
   const loginDetails = useSelector((state) => state.auth.value);
   const navigate = useNavigate(); 
+  const dispatch = useDispatch();
+
   const logoutFunction = (e) => {  
+    e.preventDefault();
+    dispatch(
+      logout()
+    );
     navigate("../login")
-    logout();
   }
 
   return (

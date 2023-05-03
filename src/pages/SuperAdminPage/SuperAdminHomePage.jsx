@@ -3,7 +3,7 @@ import "../../App.css"
 
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { useNavigate } from "react-router";
 import { logout } from "../../store/authentication";
@@ -16,10 +16,16 @@ export const SuperAdminHomePage = () => {
 
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const logoutFunction = (e) => {  
+    e.preventDefault();
+    dispatch(
+      logout()
+    );
     navigate("../login")
-    logout();
   }
+
 
 
 

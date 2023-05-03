@@ -1,19 +1,29 @@
 import  '../../App.css'
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useSelector,useDispatch } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { Button } from "react-bootstrap";
 import { MenuListComponent } from "../../components/TestAdminCraftComponent/MenuListComponent";
 import { getMenu } from '../../api/menuApi';
 import {CategoryNavbar} from '../../components/TestAdminCraftComponent/CategoryNavbar';
 import { getCategory } from '../../api/menuApi';
+import { logout } from "../../store/authentication";
+
 
 export const UserPage = () => {
   const loginDetails = useSelector((state) => state.auth.value);
   const navigate = useNavigate();
   const page = 'viewmenu';
+  const dispatch = useDispatch();
 
+  const logoutFunction = (e) => {  
+    e.preventDefault();
+    dispatch(
+      logout()
+    );
+    navigate("../login")
+  }
   useEffect(() => {
     updateItemList();
     updateCategoryList();
@@ -48,7 +58,7 @@ export const UserPage = () => {
 
   return (
     <div className="m-3" id='body'>
-      <Button id="Lgbtn" onClick={() => navigate("../login")}>Logout</Button>
+      <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
       <h1>UserPage</h1>
       
       <UserDetailsComponent user={loginDetails.user} />
