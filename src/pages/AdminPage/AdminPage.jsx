@@ -15,6 +15,7 @@ export const AdminPage = () => {
   const logoutFunction = (e) => {  
     e.preventDefault();
     dispatch(
+      //Reducer to initial state
       logout()
     );
     navigate("../login")

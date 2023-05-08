@@ -20,6 +20,7 @@ export const UserPage = () => {
   const logoutFunction = (e) => {  
     e.preventDefault();
     dispatch(
+      //Reset Reducers to initial state.
       logout()
     );
     navigate("../login")
@@ -33,7 +34,6 @@ export const UserPage = () => {
   const [items, setItems] = useState([]);
   const[trayitems,setTrayItem]=useState([]);
   const[selectedcategory,setSelectedCategory]= useState('');
-
 
   const updateCategoryList =()=>{
     getCategory(loginDetails.token).then((response)=>{
@@ -51,10 +51,6 @@ export const UserPage = () => {
   useEffect(() => {
     console.log(selectedcategory)
   },[selectedcategory])
-
-  
-
-
 
   return (
     <div className="m-3" id='body'>

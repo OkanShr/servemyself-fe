@@ -408,3 +408,9 @@ input:focus{
   border-width: 2px;
   border-radius: 7px;
 }
+#qrtextresult{
+  font-weight: bold;
+  font-size: large;
+  margin-left: 25px;
+  margin-top: 25px;
+}

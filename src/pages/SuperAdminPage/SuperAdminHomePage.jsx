@@ -10,10 +10,7 @@ import { logout } from "../../store/authentication";
 
 export const SuperAdminHomePage = () => {
 
-
-
   const loginDetails = useSelector((state) => state.auth.value);
-
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,13 +18,11 @@ export const SuperAdminHomePage = () => {
   const logoutFunction = (e) => {  
     e.preventDefault();
     dispatch(
+      //Reducers to initial state
       logout()
     );
     navigate("../login")
   }
-
-
-
 
   return (
     
@@ -50,11 +45,7 @@ export const SuperAdminHomePage = () => {
       </Button>
       </div>
       <nav id="navbuttonset1">
-      <Button id="Lgbtn"
-        // onClick={() => navigate("")}
-      >
-        Empty Button
-      </Button>
+      
       </nav>
       
       </div>
