@@ -29,7 +29,7 @@ export const MenuWaitersTray = () => {
 
   useEffect(() => {
     getTray();
-    prepOrder();
+    setUpdate(!update)
   },[confirmed])
 
   useEffect(()=>{
@@ -49,10 +49,6 @@ export const MenuWaitersTray = () => {
   });
 
 
-
-  const prepOrder = () =>{
-    setUpdate(!update)
-  }
   const sendOrder = () =>{
     if(orderinfo.ordertable !== ""){
       console.log(orderinfo)
@@ -75,7 +71,7 @@ export const MenuWaitersTray = () => {
       return(
       <div>
         <Button id="Lgbtn" className="m-2" onClick={()=> setConfirmed(false)}>Make Changes</Button>
-        <Button id="Lgbtn" onClick={()=> sendOrder()}>Make Order!</Button>
+        <Button id="Lgbtn" onClick={()=> sendOrder()}>Send Order!</Button>
       </div>
         
       )
@@ -84,7 +80,7 @@ export const MenuWaitersTray = () => {
 
   return (
     <div className="m-3" id='body'>
-      <Button id="Lgbtn" onClick={()=> navigate("../../home")}>Back To Menu</Button>
+      <Button id="Lgbtn" onClick={()=> navigate("../menu/usermenu")}>Back To Menu</Button>
       <h1>Waiters Tray</h1>
       <UserDetailsComponent user={loginDetails.user} />
 

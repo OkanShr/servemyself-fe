@@ -46,35 +46,7 @@ useEffect(() =>{
   window.localStorage.setItem('trayitems', JSON.stringify(trayitems));
 
 },[trayitems,update])
-// >>>>>>>>>>>>>>>>>>>>>>Add-Inc-Dec>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  function handleAdd(){
-    setShowAdd(!showAdd)
-    props.item.quantity = 1;
-    setTrayItem(prevState => [...prevState, props.item]);
-    console.log("Quantity of: ", props.item, " is ",props.item.quantity );
-    console.log(trayitems);
-  }
 
-  const handleDecrement = (e) => {
-    let index = trayitems.indexOf(e);
-    trayitems[index].quantity = trayitems[index].quantity - 1
-    if(trayitems[index].quantity < 1 && page==="tray"){
-      trayitems.splice(index,1);
-      localStorage.setItem('trayitems',JSON.stringify(trayitems))
-      setUpdate(!update)
-    }
-    if(trayitems[index].quantity < 1 && page!=="tray"){
-      trayitems[index].quantity = 0;
-      setShowAdd(true)
-    }
-    setUpdate(!update)
-  }
-
-  const handleIncrement = (e) => {
-    let index = trayitems.indexOf(e);
-    trayitems[index].quantity = trayitems[index].quantity + 1;
-    setUpdate(!update)
-  }
   // >>>>>>>>>>>>>>>>>>>>>>>>Render Filters>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   function filterQty(){
     if(page === "viewmenu" || page === "tray" ){
@@ -103,13 +75,18 @@ useEffect(() =>{
     if(page === "viewmenu" || page === "craftmenu")
     {
       return(
-        <Card.Text  className='br-7px mb-0'>{description}</Card.Text>
+        <div className="w-100 pt-0 pb-1 px-1 d-flex flex-row justify-content-between ">
+          <Card.Text  className='br-7px mb-0'>{description}</Card.Text>
+          {filterButtons()}
+        </div>
       )
     }
     if(page === "tray")
     {
       let index = trayitems.indexOf(props.item);
       return(
+        <div className="w-100 pt-0 pb-1 px-1  ">
+        {filterButtons()}
         <Form.Control id='itemdesc' onChange={(e) => (
           (trayitems[index].description = e.target.value),
           setUpdate(!update)
@@ -117,6 +94,8 @@ useEffect(() =>{
         type="text"
         >
         </Form.Control>
+        </div>
+        
       )
     }
     
@@ -138,7 +117,6 @@ useEffect(() =>{
         return(
           <Button onClick={handleAdd} className="align-self-end btn px-3 py-1" >Add</Button>
         )
-     
       }
     }
     else{
@@ -154,6 +132,40 @@ useEffect(() =>{
     </div>)
     }
   }
+  // >>>>>>>>>>>>>>>>>>>>>>Add-Inc-Dec>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  function handleAdd(){
+    setShowAdd(!showAdd)
+    props.item.quantity = 1;
+    setTrayItem(prevState => [...prevState, props.item]);
+    console.log("Quantity of: ", props.item, " is ",props.item.quantity );
+    console.log(trayitems);
+  }
+
+  const handleDecrement = (e) => {
+    let index = trayitems.indexOf(e);
+    trayitems[index].quantity = trayitems[index].quantity - 1
+    if(trayitems[index].quantity < 1 && page =="tray"){
+      trayitems[index].quantity = 0;
+      trayitems.splice(index,1);
+      localStorage.setItem('trayitems',JSON.stringify(trayitems))
+      setUpdate(!update)
+      window.location.reload();
+    }
+    if(trayitems[index].quantity < 1 && page!=="tray"){
+      trayitems[index].quantity = 0;
+      trayitems.splice(index,1);
+      localStorage.setItem('trayitems',JSON.stringify(trayitems))
+      setUpdate(!update)
+      setShowAdd(true)
+    }
+    setUpdate(!update)
+  }
+
+  const handleIncrement = (e) => {
+    let index = trayitems.indexOf(e);
+    trayitems[index].quantity = trayitems[index].quantity + 1;
+    setUpdate(!update)
+  }
     
   function showImageUrl(){
     if(image_url){
@@ -164,8 +176,6 @@ useEffect(() =>{
     }
   }
 
-
-
     return (
 
 
@@ -175,8 +185,8 @@ useEffect(() =>{
           <Card.Img
           variant='left'
           src={showImageUrl()}
-          width='150px'
-          height='100px'
+          width='100px'
+          height='120px'
           style={{objectFit:"contain"}}
           />
           <Col>
@@ -184,17 +194,14 @@ useEffect(() =>{
             <Card.Title>{name}</Card.Title>
             {filterQty()}
           </Card.Body>
-          <Card.Body className='pt-0 pb-1 px-1 d-flex flex-row justify-content-between '>
           {swapCommentDescription()}
-          {filterButtons()}
-          </Card.Body>
+          
 
           </Col>
 
 
         </Card>
         {/* only for admin */}
-        {/* not iterable error? */}
         <MenuUpdateComponent
           save={save}
           item={props.item}
