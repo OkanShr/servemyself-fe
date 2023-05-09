@@ -1,12 +1,11 @@
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
-import { HomePage } from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { PrivateRoute } from "./pages/PrivateRoute";
 import { useSelector } from "react-redux";
 import { UserPage } from "./pages/UserPage/UserPage";
-
+import { ScanTableCode } from "./pages/UserPage/ScanTableCode";
 import { AdminPage } from "./pages/AdminPage/AdminPage";
 import { AdminCraftMenu} from "./pages/AdminPage/AdminCraftMenu";
 
@@ -24,7 +23,7 @@ function App() {
   const loginDetails = useSelector((state) => state.auth.value);
 
   const pagesByRole = {
-    USER: <UserPage />,
+    USER: <ScanTableCode />,
     ADMIN: <AdminPage />,
     SUPER_ADMIN: <SuperAdminHomePage />,
   };
@@ -37,9 +36,13 @@ function App() {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/home" element={pagesByRole[loginDetails.user.role]} />
           <Route path="/superadmin/usermanager" element={<SuperAdminUserMenu/>} />
-          <Route path="/admin/craftmenu" element={<AdminCraftMenu/>} />
-          <Route path="/admin/ordermenu" element={<AdminOrderMenu/>}/>
+          
+          <Route path="/menu/scantablecode" element={<ScanTableCode/>}/>
           <Route path="/menu/waiterstray" element={<MenuWaitersTray/>}/>
+          <Route path="/menu/usermenu" element ={<UserPage/>}/>
+
+          <Route path="/admin/ordermenu" element={<AdminOrderMenu/>}/>
+          <Route path="/admin/craftmenu" element={<AdminCraftMenu/>} />
           <Route path="/admin/qrgenerator" element={<GenerateQR/>}/>
           <Route path="/admin/qrreader" element={<ReadQR/>}/>
 

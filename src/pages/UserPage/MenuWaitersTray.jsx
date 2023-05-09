@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react";
-import { Button, Form,Col ,Row} from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router";
+import { Button, Form,Col} from "react-bootstrap";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import {MenuListComponent} from "../../components/TestAdminCraftComponent/MenuListComponent"
@@ -13,6 +13,9 @@ export const MenuWaitersTray = () => {
   const page = "tray";
   let orderlist = ""
   let date = ""
+  const tablecode = JSON.parse(localStorage.getItem('tablecode'));
+  const [confirmed,setConfirmed] = useState(false)
+
   const [update,setUpdate] = useState(true);
   // const [showMakeOrder,setShowMakeOrder] = useState(false)
   const [trayitems, setTrayItem] = useState([]);
@@ -20,14 +23,14 @@ export const MenuWaitersTray = () => {
     username : "",
     orderlist : "",
     orderstatus : "",
-    ordertable: "",
+    ordertable: tablecode,
     orderdate : ""
   });
 
   useEffect(() => {
     getTray();
     prepOrder();
-  },[])
+  },[confirmed])
 
   useEffect(()=>{
     date = Date().toLocaleString()
@@ -45,6 +48,8 @@ export const MenuWaitersTray = () => {
     }
   });
 
+
+
   const prepOrder = () =>{
     setUpdate(!update)
   }
@@ -52,7 +57,7 @@ export const MenuWaitersTray = () => {
     if(orderinfo.ordertable !== ""){
       console.log(orderinfo)
       createOrder(orderinfo,loginDetails.token)
-      navigate("../../home")
+      navigate("../menu/usermenu")
       window.alert('Order Successfull. You will get notified by the waiter soon. ',orderinfo.orderdate)
     }
     else{
@@ -60,7 +65,22 @@ export const MenuWaitersTray = () => {
     }
     
   };
-  
+  function handleConfirm() {
+    if(confirmed===false){
+      return(
+        <Button id="Lgbtn" className="m-2"  onClick={()=> setConfirmed(true)}>Confirm Order</Button>
+      )
+    }
+    if(confirmed===true){
+      return(
+      <div>
+        <Button id="Lgbtn" className="m-2" onClick={()=> setConfirmed(false)}>Make Changes</Button>
+        <Button id="Lgbtn" onClick={()=> sendOrder()}>Make Order!</Button>
+      </div>
+        
+      )
+    }
+  }
 
   return (
     <div className="m-3" id='body'>
@@ -68,48 +88,6 @@ export const MenuWaitersTray = () => {
       <h1>Waiters Tray</h1>
       <UserDetailsComponent user={loginDetails.user} />
 
-
-        <Form id="tibform-group">
-          <Form.Group controlId="formtable">
-          <Form.Label id="formlabetable" column sm={2}>
-            Table
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control  onChange={(e) =>
-              (setOrderInfo({ ...orderinfo, ordertable: e.target.value }),
-              console.log(orderinfo))
-            }
-            type="text" 
-            placeholder="Table Number"
-            value={orderinfo.ordertable}
-            />
-          </Col>
-
-          </Form.Group>
-          
-        </Form>
-        {/* <Form.Group  id="tableinputbar" controlId="form.table">
-          <Form.Label id="tablelabel">Table Number: </Form.Label>
-          <Form.Control
-            onChange={(e) =>
-              (setOrder({ ...orderitems, ordertable: e.target.value }),
-              console.log(orderitems))
-            }
-            value={orderitems.ordertable}
-            placeholder="Table Number"
-            required
-          />
-          <div>
-          <Button variant="primary"  onClick={(e) =>
-              (setOrder({ ...orderitems, ordertable: e.target.value }),setShowMakeOrder(e),
-              console.log(orderitems))}>
-            Submit
-          </Button>
-        </div>
-        </Form.Group> */}
-        
-
-      
       <MenuListComponent
         items={trayitems}
         loginDetails={loginDetails}
@@ -118,8 +96,9 @@ export const MenuWaitersTray = () => {
         page={page}
         selectedcategory={''}
       />
+      <p className="mt-2"> Table: {tablecode}</p>
 
-      <Button id="Lgbtn" onClick={()=> sendOrder()}>Make Order!</Button>
+      {handleConfirm()}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { MenuListItemComponent } from "./MenuListItemComponent";
 import {useState} from 'react'
 
 export const MenuListComponent = (props) => {
-  const { loginDetails, updateItemList, items,trayitems,setTrayItem, page , categories ,selectedcategory ,ordercomment,setOrderComment} = props;
+  const { loginDetails, updateItemList, items,trayitems,setTrayItem, page , categories ,selectedcategory} = props;
 
   //this is just a usestate to rerender- fixes the bug where numbers didnt change
   const [update,setUpdate] = useState(false)

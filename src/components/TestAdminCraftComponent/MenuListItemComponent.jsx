@@ -1,5 +1,5 @@
 
-import React, { useState, forceUpdate} from "react";
+import React, { useState} from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { deleteItem, updateItem} from "../../api/menuApi";
 import {MenuUpdateComponent} from "./MenuUpdateComponent"
@@ -8,10 +8,11 @@ import { useEffect } from 'react';
 
 
 export const MenuListItemComponent = (props) => {
-  const { loginDetails, updateItemList, trayitems,setTrayItem,update,setUpdate,page ,categories} = props;
-  const {  name , description , price , id, category,image_url} = props.item;
+  const { loginDetails, updateItemList, trayitems,setTrayItem,page ,categories} = props;
+  const {  name , description , price , id,image_url} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
   const [showAdd,setShowAdd]= useState(true)
+  const [update,setUpdate] = useState(true)
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
   const save = (e, values) => {
@@ -39,8 +40,6 @@ useEffect(() => {
   if(page==="tray"){
     setShowAdd(false);
   }
-  const traydata = window.localStorage.getItem('trayitems');
-  console.log("traydata",traydata)
 },[])
 
 useEffect(() =>{
@@ -73,8 +72,7 @@ useEffect(() =>{
 
   const handleIncrement = (e) => {
     let index = trayitems.indexOf(e);
-    trayitems[index].quantity = trayitems[index].quantity + 1
-    console.log(trayitems[index].quantity)
+    trayitems[index].quantity = trayitems[index].quantity + 1;
     setUpdate(!update)
   }
   // >>>>>>>>>>>>>>>>>>>>>>>>Render Filters>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -113,7 +111,8 @@ useEffect(() =>{
       let index = trayitems.indexOf(props.item);
       return(
         <Form.Control id='itemdesc' onChange={(e) => (
-          (trayitems[index].description = e.target.value),setUpdate(!update),console.log(trayitems[index].description)
+          (trayitems[index].description = e.target.value),
+          setUpdate(!update)
         )}
         type="text"
         >
@@ -158,8 +157,6 @@ useEffect(() =>{
     
   function showImageUrl(){
     if(image_url){
-      console.log(image_url)
-    
       return ('/Images/'+ image_url)
     }
     else{
