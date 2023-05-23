@@ -75,7 +75,7 @@ useEffect(() =>{
     if(page === "viewmenu" || page === "craftmenu")
     {
       return(
-        <div className="w-100 pt-0 pb-1 px-1 d-flex flex-row justify-content-between ">
+        <div className=" w-100 pt-0 pb-1 px-1 d-flex flex-row justify-content-between ">
           <Card.Text  className='br-7px mb-0'>{description}</Card.Text>
           {filterButtons()}
         </div>
@@ -87,13 +87,16 @@ useEffect(() =>{
       return(
         <div className="w-100 pt-0 pb-1 px-1  ">
         {filterButtons()}
-        <Form.Control id='itemdesc' onChange={(e) => (
+        <textarea id='itemdesc' className="form-control w-100" 
+        onChange={(e) => (
           (trayitems[index].description = e.target.value),
           setUpdate(!update)
-        )}
+        )} 
+        rows={3}
         type="text"
-        >
-        </Form.Control>
+        placeholder="Buraya Yorum Ekleyebilirsiniz"
+        ></textarea>
+        
         </div>
         
       )
@@ -185,8 +188,8 @@ useEffect(() =>{
           <Card.Img
           variant='left'
           src={showImageUrl()}
-          width='100px'
-          height='120px'
+          width='70px'
+          height='100%'
           style={{objectFit:"contain"}}
           />
           <Col>

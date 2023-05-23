@@ -8,8 +8,8 @@ import { QrReader } from 'react-qr-reader';
 export const ReadQR = () => {
   
   const navigate = useNavigate(); 
-
   const [qrcode,setQrcode] = useState('Waiting for Scan..');
+  
 
   return(
     <div className="m-3" id='body'>

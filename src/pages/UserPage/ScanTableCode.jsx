@@ -13,6 +13,9 @@ export const ScanTableCode = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [confirm,setConfirm] = useState(false)
+  const [tablenumber,setTablenumber] = useState('');
+  const [restaurantname,setRestaurantname] = useState('');
+
 
   const logoutFunction = (e) => {  
     e.preventDefault();
@@ -25,13 +28,17 @@ export const ScanTableCode = () => {
   function handleConfirmed (){
     if(confirm === false){
       return(
-        <Button id="Lgbtn" className="m-2"  onClick={()=> setConfirm(true)}>Confirm Order</Button>
+        <Button id="Lgbtn" className="m-2"  onClick={()=> setConfirm(true)}>Confirm Table Number</Button>
       )
     }
     if(confirm ===true){
-            window.localStorage.setItem('tablecode', JSON.stringify(qrcode))
-            navigate("../menu/usermenu");
-            window.location.reload()
+      setTablenumber(qrcode.substring(qrcode.indexOf(":")+1))
+      console.log(tablenumber)
+      setRestaurantname(qrcode.substring(qrcode.indexOf(":"-1)))
+      console.log(restaurantname)
+            // window.localStorage.setItem('tablecode', JSON.stringify(qrcode))
+            // navigate("../menu/usermenu");
+            // window.location.reload()
     }
   }
 
@@ -46,7 +53,8 @@ export const ScanTableCode = () => {
       <Button id="Lgbtn" onClick={logoutFunction}>Back To Admin Menu</Button>
       <h1 className='mt-2'>Scan Table QR-Code</h1>
       <QrReader
-      facingMode={"environment"}
+      key="environment"
+      constraints={{ facingMode: 'environment' }}
       scanDelay={300}
         onResult={(result, error) => {
           if (!!result) {
@@ -61,6 +69,7 @@ export const ScanTableCode = () => {
         {handleConfirmed()}
 
         <p className="mt-10" id='qrtextresult'>{qrcode}</p>
+        
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import '../../App.css';
 import React, { useState } from 'react';
+import { useSelector,useDispatch } from "react-redux";
+
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import QRCode from 'qrcode'
@@ -9,9 +11,14 @@ export const GenerateQR = () => {
   
   const [url,setUrl] = useState('');
   const [qrcode, setQrcode] = useState('');
+  const [ultimateqr, setUltimateQr] = useState('')
+
+  const loginDetails = useSelector((state) => state.auth.value);
+  
 
   const GenerateQRCode = () => {
-    QRCode.toDataURL(url,{
+    console.log(ultimateqr)
+    QRCode.toDataURL(ultimateqr,{
       width: 200,
       margin: 1,
       color:{ light:'#f8f8f805'}
@@ -40,8 +47,9 @@ export const GenerateQR = () => {
             type='text'
             placeholder='Masa Numarasi Girin'
             value={url}
-            onChange={(evt)=> setUrl(evt.target.value)}/>
+            onChange={(evt)=> {setUrl(evt.target.value); setUltimateQr(loginDetails.user.name + ":" + evt.target.value);console.log(ultimateqr)}}/>
           <Button onClick={GenerateQRCode}>Generate</Button>
+
           {qrcode && <>
               <img src={qrcode} alt=''/>
               <a href={qrcode} download={url + '.png'} className='text-decoration-none text-black text h4'><strong>Download</strong></a>
