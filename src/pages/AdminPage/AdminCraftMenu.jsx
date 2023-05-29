@@ -24,7 +24,7 @@ export const AdminCraftMenu = () => {
   const page = 'craftmenu'
   
   const updateItemList = () => {
-    getMenu(loginDetails.token).then((response) =>{
+    getMenu(loginDetails.user.username,loginDetails.token).then((response) =>{
       setItems(response.data);
       console.log(response.data);
     });

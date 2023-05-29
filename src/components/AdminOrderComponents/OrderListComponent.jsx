@@ -12,10 +12,10 @@ export const OrderListComponent = (props) => {
       
       {
         orders?
-        orders
+        orders.slice(0)
+        .reverse()
         .map((x) => (
-          
-            <OrderListItemComponent key={x.id}
+            <OrderListItemComponent key={x.orderdate}
               showSelf={showSelf}
               loginDetails={loginDetails}
               item={x}

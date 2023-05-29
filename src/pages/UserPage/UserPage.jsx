@@ -43,7 +43,7 @@ export const UserPage = () => {
   }
 
   const updateItemList = () => {
-    getMenu(loginDetails.token).then((response) =>{
+    getMenu(tablecode.substring(0,tablecode.indexOf(":")),loginDetails.token).then((response) =>{
       setItems(response.data);
       console.log(response.data);
     });

@@ -1,12 +1,19 @@
 import axios from "axios";
 import { instance as axiosInstance } from "./apiInterceptor";
 
-export const getMenu = (token) => {
-  return axiosInstance.get("/api/menu", {
+export const getMenu = (restaurant,token) => {
+  return axiosInstance.get("/api/menu/" + restaurant,{
     headers: {
       Authorization: `Bearer ${token}`
     }
     
+  });
+};
+export const getHistory = (username,token) => {
+  return axiosInstance.get("/api/history/" + username, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
   });
 };
 

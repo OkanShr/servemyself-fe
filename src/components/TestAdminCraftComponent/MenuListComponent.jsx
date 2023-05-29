@@ -3,7 +3,7 @@ import { MenuListItemComponent } from "./MenuListItemComponent";
 import {useState} from 'react'
 
 export const MenuListComponent = (props) => {
-  const { loginDetails, updateItemList, items, trayitems, setTrayItem, page, categories, selectedcategory, tablecode} = props;
+  const { loginDetails, updateItemList, items, trayitems, setTrayItem, page, categories, selectedcategory} = props;
 
   //this is just a usestate to rerender- fixes the bug where numbers didnt change
   const [update,setUpdate] = useState(false)
@@ -17,7 +17,7 @@ export const MenuListComponent = (props) => {
       items?
       items
       .slice(0).reverse().map((x) => {
-        if(selectedcategory === "" && tablecode.substring(0,tablecode.indexOf(":")) === x.restaurant)
+        if(selectedcategory === "" )
           return(
           <MenuListItemComponent key={x.id}
             updateItemList={updateItemList}
@@ -30,7 +30,7 @@ export const MenuListComponent = (props) => {
             setUpdate={setUpdate}
             categories={categories}
           />)
-        if(selectedcategory === x.category && tablecode.substring(0,tablecode.indexOf(":")) === x.restaurant)
+        if(selectedcategory === x.category )
           return(
             <MenuListItemComponent key={x.id}
               updateItemList={updateItemList}
@@ -45,7 +45,7 @@ export const MenuListComponent = (props) => {
             />
           )
         
-        if(loginDetails.user.role==="ADMIN" && loginDetails.user.name === x.restaurant)
+        if(loginDetails.user.role==="ADMIN" )
         return(
           <MenuListItemComponent key={x.id}
               updateItemList={updateItemList}

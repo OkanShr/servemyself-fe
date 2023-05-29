@@ -8,7 +8,7 @@ import { OrderPeekComponent } from "./OrderPeekComponent";
 
 export const OrderListItemComponent = (props) => {
   const { loginDetails, update,setUpdate ,updateOrderList,showSelf} = props;
-  const { username , ordertable , orderlist , id, ordertime,orderstatus} = props.item;
+  const { username , ordertable , orderlist , id, orderdate,orderstatus} = props.item;
   
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [showPeek, setShowPeek] = useState(false);
@@ -54,6 +54,9 @@ export const OrderListItemComponent = (props) => {
   }
   
   function filterStatusButton(){
+    if(loginDetails.user.role === "USER"){
+      return(null)
+    }
     if(orderstatus==="Pending"){
       return(
         <Button id="orderbutton" onClick={()=> acceptOrder()}>Accept Order</Button>
@@ -75,6 +78,17 @@ export const OrderListItemComponent = (props) => {
       )
     }
   }
+  function cancelButton(){
+    if(loginDetails.user.role === "ADMIN"){
+      return(
+      <div id="obl2">
+      <Button id="orderbutton" onClick={()=> cancelOrder()}>Cancel Order</Button>
+      </div>
+      )
+      
+    
+  }}
+
   function checkStatus(){
     if(props.item.orderstatus === "Ready"){
       return(showSelf.Ready)
@@ -99,25 +113,25 @@ export const OrderListItemComponent = (props) => {
     return(
         <div id="order">
         <div id="orderheader">
-          <p id="table">{ordertable}</p>
-          <p id="status">{orderstatus}</p>
+          <p id="table">Table : {ordertable}</p>
+          <p id="status">Order Status : {orderstatus}</p>
+          <p id="status">Order Date : {orderdate.substring(0, orderdate.length-21)}</p>
+
         </div>
 
         <div id="obl1">
           <Button id="orderbutton" onClick={()=> peekOrder()}>Peek Order</Button>
           {filterStatusButton()}
         </div>
-        <div id="obl2">
-          <Button id="orderbutton" onClick={()=> cancelOrder()}>Cancel Order</Button>
-        </div>
+        
+        {cancelButton()}
 
         <OrderPeekComponent
         closePeek={closePeek}
         order={parsedorderlist}
         showPeek={showPeek}
         setShowPeek={setShowPeek}
-        ordertime={ordertime}
-        orderstatus={orderstatus}
+        orderdate={orderdate}
         ordertable={ordertable}
         />
 

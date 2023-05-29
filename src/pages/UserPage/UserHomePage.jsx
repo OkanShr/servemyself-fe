@@ -8,7 +8,7 @@ import { UserDetailsComponent } from "../../components/UserDetailsComponent/User
 import { useNavigate } from "react-router";
 import { logout } from "../../store/authentication";
 
-export const SuperAdminHomePage = () => {
+export const UserHomePage = () => {
 
   const loginDetails = useSelector((state) => state.auth.value);
 
@@ -32,19 +32,23 @@ export const SuperAdminHomePage = () => {
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
       </div>
       <div id="form">
-
       
       <UserDetailsComponent id="profileheader" user={loginDetails.user} />
       <div id="navbuttons">
       <div id="navbuttonset1">
       <Button id="Lgbtn"
-        onClick={() => navigate("../superadmin/usermanager")}
+        onClick={() => navigate("../menu/scantablecode")}
       >
-        User Manager
+        Scan Menu
       </Button>
+      
       </div>
       <nav id="navbuttonset1">
-      
+      <Button id="Lgbtn"
+        onClick={() => navigate("../../user/history")}
+      >
+        My Order History
+      </Button>
       </nav>
       
       </div>

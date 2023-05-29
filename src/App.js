@@ -18,12 +18,15 @@ import { MenuWaitersTray } from "./pages/UserPage/MenuWaitersTray";
 import { AdminOrderMenu } from "./pages/AdminPage/AdminOrderMenu";
 import { GenerateQR } from "./pages/AdminPage/GenerateQR";
 import {ReadQR} from "./pages/AdminPage/ReadQR"
+import { HistoryPage } from "./pages/UserPage/HistoryPage";
+import { UserHomePage } from "./pages/UserPage/UserHomePage";
+
 
 function App() {
   const loginDetails = useSelector((state) => state.auth.value);
 
   const pagesByRole = {
-    USER: <ScanTableCode />,
+    USER: <UserHomePage />,
     ADMIN: <AdminPage />,
     SUPER_ADMIN: <SuperAdminHomePage />,
   };
@@ -40,6 +43,9 @@ function App() {
           <Route path="/menu/scantablecode" element={<ScanTableCode/>}/>
           <Route path="/menu/waiterstray" element={<MenuWaitersTray/>}/>
           <Route path="/menu/usermenu" element ={<UserPage/>}/>
+          <Route path="/user/history" element ={<HistoryPage/>}/>
+          <Route path="/userhomepage" element ={<UserHomePage/>}/>
+
 
           <Route path="/admin/ordermenu" element={<AdminOrderMenu/>}/>
           <Route path="/admin/craftmenu" element={<AdminCraftMenu/>} />

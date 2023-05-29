@@ -45,7 +45,7 @@ export const ScanTableCode = () => {
   return(
     <div className="m-3" id='body'>
       <div>
-      <Button id="Lgbtn" onClick={logoutFunction}>Back To Admin Menu</Button>
+      <Button id="Lgbtn" onClick={() => navigate("../../userhomepage")}>Back to Main Menu</Button>
       <h1 className='mt-2'>Scan Table QR-Code</h1>
       <QrReader
       key="environment"

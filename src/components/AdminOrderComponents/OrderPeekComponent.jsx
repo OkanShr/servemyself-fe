@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 
 export const OrderPeekComponent = (props) => {
-  const { showPeek, setShowPeek,order,ordertable } = props;
+  const { showPeek, setShowPeek,order,ordertable ,orderdate } = props;
   const handleClose = () => setShowPeek(false);
   
   function getTotal(){
@@ -23,7 +23,7 @@ return (
     keyboard={false}
   >
     <Modal.Header closeButton>
-      <Modal.Title>Order of Table {ordertable}</Modal.Title>
+      <Modal.Title>Order of Table: {ordertable}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       {order.map(({id,quantity, name ,price,description})=>(
@@ -35,7 +35,8 @@ return (
 
       ))}
     </Modal.Body>
-    <Modal.Footer>
+    <Modal.Footer><div id="itemname">Date: {orderdate.substring(0, orderdate.length-29)}</div>
+      
     <div id="itemname">Total: {getTotal()}$</div>
     </Modal.Footer>
   </Modal>
