@@ -60,8 +60,7 @@ export const AdminOrderMenu = () => {
     <div id='body'>
       <div>
       <Button id="Lgbtn" onClick={() => navigate("../home")}>Back To Main Menu</Button>
-      <UserDetailsComponent user={loginDetails.user} />
-      <h1>Orders</h1>
+      <h1 className="mt-2">Orders</h1>
       
       <FormControlLabel
           defaultChecked={showSelf.Ready}

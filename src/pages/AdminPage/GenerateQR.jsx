@@ -48,7 +48,7 @@ export const GenerateQR = () => {
             placeholder='Masa Numarasi Girin'
             value={url}
             onChange={(evt)=> {setUrl(evt.target.value); setUltimateQr(loginDetails.user.name + ":" + evt.target.value);console.log(ultimateqr)}}/>
-          <Button onClick={GenerateQRCode}>Generate</Button>
+          <Button id="Lgbtn" onClick={GenerateQRCode}>Generate</Button>
 
           {qrcode && <>
               <img src={qrcode} alt=''/>

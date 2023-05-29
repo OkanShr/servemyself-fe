@@ -25,7 +25,6 @@ export const AdminPage = () => {
     <div className="m-3" id='body'>
       <div>
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
-      <h1 className='mt-2'>Welcome Shop Owner</h1>
       <UserDetailsComponent user={loginDetails.user} />
       </div>
       

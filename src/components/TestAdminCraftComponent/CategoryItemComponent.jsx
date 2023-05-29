@@ -36,7 +36,7 @@ export const CategoryItemComponent = (props) => {
         <div id='CategoryItem'>
           <p id='CategoryName'>{categoryname}</p>
           <MdModeEditOutline onClick={changeEditState} size={30} />
-          <MdDelete onClick={deleteCategoryf} size={30} id="CategoryDeleteButton" color="red" />
+          <MdDelete onClick={deleteCategoryf} size={30} id="CategoryDeleteButton"  />
         </div>
       )
     }
@@ -52,7 +52,7 @@ export const CategoryItemComponent = (props) => {
           placeholder='Category'
           />
           <MdDone onClick={editCategory} size={30} />
-          <MdClear onClick={changeEditState} size={30} id="CategoryDeleteButton" color="red" />
+          <MdClear onClick={changeEditState} size={30} id="CategoryDeleteButton"  />
         </div>
       )
         

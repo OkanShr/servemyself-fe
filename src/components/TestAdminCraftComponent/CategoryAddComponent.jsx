@@ -28,7 +28,7 @@ export const CategoryAddComponent = (props) => {
     </Modal.Header>
     
      <ListGroup id='AddCategory' className='gap-1'>
-     <Button onClick={createNewCategory}>Add Category</Button>
+     <Button id='Lgbtn' onClick={createNewCategory}>Add Category</Button>
       {
         categories?categories.slice(0).reverse().map((x)=>(
           <CategoryItemComponent key={x.id}

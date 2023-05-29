@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export const MenuListItemComponent = (props) => {
   const { loginDetails, updateItemList, trayitems,setTrayItem,page ,categories} = props;
-  const {  name , description , price , id,image_url} = props.item;
+  const {  name , description , price , id,imageurl} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
   const [showAdd,setShowAdd]= useState(true)
   const [update,setUpdate] = useState(true)
@@ -124,7 +124,7 @@ useEffect(() =>{
     }
     else{
       return(<div className='float-end d-flex flex-column'>
-      <MdDelete onClick={deleteItemf} size={30} color="red" />
+      <MdDelete onClick={deleteItemf} size={30} />
       <MdModeEditOutline 
       onClick={() => {
         setShowUpdate(true);
@@ -171,8 +171,8 @@ useEffect(() =>{
   }
     
   function showImageUrl(){
-    if(image_url){
-      return ('/Images/'+ image_url)
+    if(imageurl){
+      return ('/Images/'+ imageurl)
     }
     else{
       return ('/Images/foodpicture.jpg')
@@ -186,6 +186,7 @@ useEffect(() =>{
         
         <Card className="flex-fill d-flex flex-row card-horizontal" id="listitem">
           <Card.Img
+          id="cardimg"
           variant='left'
           src={showImageUrl()}
           width='70px'

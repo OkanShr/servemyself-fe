@@ -16,7 +16,7 @@ let today = year + "-" + month + "-" + date
 
 export const MenuUpdateComponent = (props) => {
   const { showUpdate, setShowUpdate ,categories} = props;
-  const {id , name , description , price , category, image_url} = props.item;
+  const {id , name , description , price , category, imageurl, restaurant} = props.item;
 
   const [selectedimage, setSelectedImage] = useState(null);
   const [values, setValues] = useState({
@@ -25,20 +25,21 @@ export const MenuUpdateComponent = (props) => {
     description: description || "",
     price: price || "",
     category: category || "",
-    image_url: image_url || ""
+    imageurl: imageurl || "",
+    restaurant: restaurant
   });
 
   const handleClose = () => {
     
     setShowUpdate(false)
-    setSelectedImage(values.image_url)
+    setSelectedImage(values.imageurl)
   };
 
   const fileUploadHandler = (e) => {
     if(typeof(e) !== 'undefined'){
       if(e.type === "image/jpg" || e.type === "image/png" || e.type === "image/jpeg"){
         setSelectedImage(e);
-        setValues({...values,image_url: (today + "-" + e.name)})
+        setValues({...values,imageurl: (today + "-" + e.name)})
         
       }
       else{console.log("not an image")}

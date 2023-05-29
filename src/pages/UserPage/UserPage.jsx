@@ -31,9 +31,10 @@ export const UserPage = () => {
   },[])
 
   const[categories,setCategories]=useState([]);
-  const [items, setItems] = useState([]);
+  const[items, setItems] = useState([]);
   const[trayitems,setTrayItem]=useState([]);
   const[selectedcategory,setSelectedCategory]= useState('');
+  const tablecode = JSON.parse(localStorage.getItem('tablecode'));
 
   const updateCategoryList =()=>{
     getCategory(loginDetails.token).then((response)=>{
@@ -52,11 +53,14 @@ export const UserPage = () => {
     console.log(selectedcategory)
   },[selectedcategory])
 
+
+
+
+
   return (
     <div className="m-3" id='body'>
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
-      <h1>UserPage</h1>
-      
+
       <UserDetailsComponent user={loginDetails.user} />
       <CategoryNavbar 
       categories={categories}
@@ -71,9 +75,10 @@ export const UserPage = () => {
         loginDetails={loginDetails}
         selectedcategory={selectedcategory}
         page={page}
+        tablecode={tablecode}
       />
       <div className="pt-3 float-end footer sticky-bottom navbar-fixed-bottom">
-        <Button  onClick={() => navigate("../menu/waiterstray")}>Devam</Button>
+        <Button id='Lgbtn'  onClick={() => navigate("../menu/waiterstray")}>Devam</Button>
       </div>
     </div>
   );

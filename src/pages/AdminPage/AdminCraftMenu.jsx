@@ -74,10 +74,10 @@ export const AdminCraftMenu = () => {
       
       <div id='addstuffdiv'>
       
-      <Button id='addstuff'
+      <Button id='Lgbtn'
       onClick={() => setShowCraft(true) }   
       >Add Item</Button>
-      <Button id='addstuff'
+      <Button id='Lgbtn' className='m-2'
       onClick={() => setShowAddCategory(true) }   
       >Add Category</Button>
       </div>

@@ -13,8 +13,7 @@ export const ScanTableCode = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [confirm,setConfirm] = useState(false)
-  const [tablenumber,setTablenumber] = useState('');
-  const [restaurantname,setRestaurantname] = useState('');
+
 
 
   const logoutFunction = (e) => {  
@@ -28,17 +27,13 @@ export const ScanTableCode = () => {
   function handleConfirmed (){
     if(confirm === false){
       return(
-        <Button id="Lgbtn" className="m-2"  onClick={()=> setConfirm(true)}>Confirm Table Number</Button>
+        <Button id="Lgbtn" className="m-2"  onClick={()=> setConfirm(true)}>Confirm</Button>
       )
     }
     if(confirm ===true){
-      setTablenumber(qrcode.substring(qrcode.indexOf(":")+1))
-      console.log(tablenumber)
-      setRestaurantname(qrcode.substring(qrcode.indexOf(":"-1)))
-      console.log(restaurantname)
-            // window.localStorage.setItem('tablecode', JSON.stringify(qrcode))
-            // navigate("../menu/usermenu");
-            // window.location.reload()
+      window.localStorage.setItem('tablecode', JSON.stringify(qrcode))
+      navigate("../menu/usermenu");
+      window.location.reload()
     }
   }
 
@@ -66,10 +61,9 @@ export const ScanTableCode = () => {
         }}
         containerStyle={{height:500}}
       />
+        <p className="mt-10" id='qrtextresult'>{"Table : " + qrcode.substring(qrcode.indexOf(":") + 1)}</p>
+        <p className="mt-10" id='qrtextresult'>{"Restaurant : " + qrcode.substring(0,qrcode.indexOf(":"))}</p>
         {handleConfirmed()}
-
-        <p className="mt-10" id='qrtextresult'>{qrcode}</p>
-        
       </div>
     </div>
   );

@@ -88,14 +88,6 @@ const LoginPage = () => {
           Reset Password
         </p>
         <div id='notauser'>Not a User?</div>
-        <div id="gstorreg">
-        <Button id="Gstbts">
-            Login As Guest
-          </Button>
-          <h3 id="or">
-          OR 
-          </h3>
-          
           <Button id="Regbtn"
             onClick={() => navigate("/register")}
             variant="success"
@@ -105,8 +97,6 @@ const LoginPage = () => {
           >
             Register
           </Button>
-        </div>
-        
       </Form>
     </Container>
 

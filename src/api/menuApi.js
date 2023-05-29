@@ -27,6 +27,7 @@ export const deleteItem = (id, token) => {
 };
 
 export const createItem = (post, token) => {
+  console.log(post)
   return axiosInstance.post("/api/menu/create-item", post, {
     headers: {
       Authorization: `Bearer ${token}`

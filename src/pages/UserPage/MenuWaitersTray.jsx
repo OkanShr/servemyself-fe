@@ -57,7 +57,7 @@ export const MenuWaitersTray = () => {
       window.alert('Order Successfull. You will get notified by the waiter soon. ',orderinfo.orderdate)
     }
     else{
-      window.alert('You Have To Set Table Number First')
+      window.alert('Error Call Waiter')
     }
     
   };
@@ -92,7 +92,7 @@ export const MenuWaitersTray = () => {
         page={page}
         selectedcategory={''}
       />
-      <p className="mt-2"> Table: {tablecode}</p>
+      <p className="mt-2"> Table: {tablecode.substring(tablecode.indexOf(":") + 1)}</p>
 
       {handleConfirm()}
     </div>

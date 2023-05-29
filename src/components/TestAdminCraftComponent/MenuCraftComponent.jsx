@@ -12,20 +12,22 @@ let year = date_ob.getFullYear();
 let today = year + "-" + month + "-" + date
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-
 export const MenuCraftComponent = (props) => {
-  const { showCraft, setShowCraft, create,categories } = props;
+  const { showCraft, setShowCraft, create, categories, loginDetails } = props;
 
   const [selectedimage, setSelectedImage] = useState(null);
 
-  const [values, setValues] = useState({
+
+  const initialState = {
     name: "",
     description: "",
     price: "",
-    category: "",
-    image_url: ""
-  });
+    category: "Asian",
+    imageurl: "",
+    restaurant: loginDetails.user.name,
+  };
+  
+  const [values, setValues] = useState(initialState);
 
   const handleClose = () => {
     setShowCraft(false)
@@ -38,7 +40,7 @@ export const MenuCraftComponent = (props) => {
     if(typeof(e) !== 'undefined'){
       if(e.type === "image/jpg" || e.type === "image/png" || e.type === "image/jpeg"){
         setSelectedImage(e);
-        setValues({...values,image_url: (today + "-" + e.name)})
+        setValues({...values,imageurl: (today + "-" + e.name)})
         console.log(today)
       }
       else{console.log("not an image")}
@@ -110,7 +112,7 @@ export const MenuCraftComponent = (props) => {
         <Modal.Title>Add Item</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={(e) => {create(e, values); onFileUpload(); setValues({})}}>
+        <Form onSubmit={(e) => {create(e, values); onFileUpload(); setValues(initialState)}}>
           <Form.Group size="lg" className="mb-3" controlId="form.itemname">
             <Form.Label size="lg">Item Name</Form.Label>
             <Form.Control
@@ -169,13 +171,8 @@ export const MenuCraftComponent = (props) => {
           </Form.Select>
           </Form.Group>
 
-
-          
-          {/* CURRENTLY FILE UPLOAD IS DISABLED DUE TO RESTRICTION TO LOCAL FILES */}
           <Form.Group>
-          
           <Form.Label size="lg">Item Image</Form.Label>
-          {/* <img id="img" height={"150px"} src={require("./foodpicture.jpg")}  /> */}
           {selectedimage && (
         <div>
           {showSelectedImage(selectedimage)}
@@ -197,7 +194,7 @@ export const MenuCraftComponent = (props) => {
           
           
           <div id="saveitem">
-            <Button variant="primary" required type="submit" size="md">
+            <Button id="Lgbtn" className="mt-2" required type="submit" size="md">
               Add
             </Button>
           </div>
