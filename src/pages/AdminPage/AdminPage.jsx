@@ -22,10 +22,10 @@ export const AdminPage = () => {
   }
 
   return (
-    <div className="m-3" id='body'>
-      <div>
+    <div id="body">
+      <div id='banner'>
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
-      <UserDetailsComponent user={loginDetails.user} />
+      <UserDetailsComponent  user={loginDetails.user} />
       </div>
       
 

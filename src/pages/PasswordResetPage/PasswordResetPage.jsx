@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { passwordReset, passwordResetRequest } from "../../api/userApi";
+import { BsChevronLeft } from "react-icons/bs";
 
 export const PasswordResetPage = () => {
   const [values, setValues] = useState({
@@ -31,9 +32,15 @@ export const PasswordResetPage = () => {
     }
   };
   return (
-    <Container className="mt-5" id="body">
-      <h2 className="mt-5">Reset Your Password</h2>
-      <Form className="mt-3" onSubmit={(e) => resetPassword(e)}>
+    <Container className="d-flex flex-column justify-content-center" id="body">
+      <div id="banner">
+        <BsChevronLeft
+          onClick={() => navigate("../login")}
+          id="back"
+        ></BsChevronLeft>
+        <h2 className="mt-3">Reset Password</h2>
+      </div>
+      <Form onSubmit={(e) => resetPassword(e)}>
         {!values.emailSent ? (
           <Container>
             <Form.Group className="mb-3" size="lg" controlId="form.email">
@@ -47,7 +54,6 @@ export const PasswordResetPage = () => {
                 placeholder="mail"
               />
             </Form.Group>
-            <br />
             <Button variant="primary" required type="submit" id="Lgbtn">
               Send password reset request
             </Button>

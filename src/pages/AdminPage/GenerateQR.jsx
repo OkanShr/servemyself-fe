@@ -34,8 +34,8 @@ export const GenerateQR = () => {
 
 
   return(
-    <div className="m-3" id='body'>
-      <div>
+    <div  id='body'>
+      <div id='banner'>
       <Button id="Lgbtn" onClick={() => navigate("../home")}>Back To Admin Menu</Button>
       <h1 className='mt-2'>QR GENERATOR</h1>
       

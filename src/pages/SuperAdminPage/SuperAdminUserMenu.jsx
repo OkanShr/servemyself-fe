@@ -1,4 +1,4 @@
-import "../../App.css"
+import "../../App.css";
 
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
@@ -11,7 +11,6 @@ import { Navigate, useNavigate } from "react-router";
 import { login, logout } from "../../store/authentication";
 
 export const SuperAdminUserMenu = () => {
-  
   const loginDetails = useSelector((state) => state.auth.value);
   const [showCreate, setShowCreate] = useState(false);
   const [users, setUsers] = useState([]);
@@ -22,10 +21,10 @@ export const SuperAdminUserMenu = () => {
     });
   };
   const navigate = useNavigate();
-  const logoutFunction = (e) => {  
-    navigate("../login")
+  const logoutFunction = (e) => {
+    navigate("../login");
     logout();
-  }
+  };
 
   useEffect(() => {
     updateUserList();
@@ -46,38 +45,36 @@ export const SuperAdminUserMenu = () => {
   };
 
   return (
-    <div className="m-3" id="body">
+    <div id="body">
       <div>
+        <div id="banner">
+          <Button id="Lgbtn" onClick={logoutFunction}>
+            Logout
+          </Button>
 
-      <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
+          <h1 className="mt-2 mb-2">
+            SuperAdminPage
+          </h1>
+        </div>
+        <Button
+          id="Lgbtn"
+          onClick={() => navigate("../home")}
+          className="mt-3 mb-3 d-flex btn-success"
+          style={{ marginLeft: "auto" }}
+        >
+          Main Menu
+        </Button>
 
-      <h1>SuperAdminPage</h1>
-
+        <Button
+          id="Lgbtn"
+          onClick={() => setShowCreate(true)}
+          className="mb-3 d-flex btn-success"
+          style={{ marginLeft: "auto" }}
+        >
+          Create New User
+        </Button>
       </div>
-      
-      <UserDetailsComponent id="profileheader" user={loginDetails.user} />
-      
-      <div>
 
-
-      <Button id="Lgbtn"
-        onClick={() => navigate("../home")}
-        className="mb-3 d-flex btn-success"
-        style={{ marginLeft: "auto" }}
-      >
-        Main Menu
-      </Button>
-
-      <Button id="Lgbtn"
-        onClick={() => setShowCreate(true)}
-        className="mb-3 d-flex btn-success"
-        style={{ marginLeft: "auto" }}
-      >
-        Create New User
-      </Button>
-
-      </div>
-      
       <UserListComponent
         updateUserList={updateUserList}
         users={users}
@@ -90,11 +87,6 @@ export const SuperAdminUserMenu = () => {
         showCreate={showCreate}
         setShowCreate={setShowCreate}
       />
-
-      
     </div>
-
-
-    
   );
 };

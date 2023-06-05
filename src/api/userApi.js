@@ -9,6 +9,7 @@ export const getAllUsers = (token) => {
   });
 };
 
+
 export const updateUser = (post, token) => {
   return axiosInstance.put("/api/user", post, {
     headers: {

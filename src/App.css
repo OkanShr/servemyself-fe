@@ -1,25 +1,42 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 @font-face {
   font-family: Josefin Sans;
   src: url(A:\servemyself-fe\JosefinSans-VariableFont_wght.ttf);
 }
 
 :root {
-  --color1: #6b4e4f;
-  --color2: #f1cab9;
+  --color1: #181111;
+  --color2: #efeff1;
+  --color3: #994242;
 }
-video{
+video {
   width: 250px;
   height: 250px;
 }
+input#searchtableinput {
+  border-color: #994242;
+  border-width: 3px;
+  height: 35px;
+}
+input#searchtableinput:focus {
+  border-width: 3px;
+  height: 35px;
+  border-color: #994242;
+}
+#banner {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-image: url("../public/Images/banner.jfif");
+  background-size: cover;
+}
 #body {
-  font-family: 'Josefin Sans';
-
+  font-family: "Josefin Sans";
+  margin-bottom: 0;
   user-select: none;
   padding-top: 15px;
   padding-bottom: 100%;
@@ -27,11 +44,11 @@ video{
   padding-right: 10px;
   color: var(--color1);
   background-color: white;
-  /* background-image: url("../public/Images/52033766931_79be1be305_h.114.jpg"); */
   background-size: contain;
   background: var(--color2);
 }
-#back ,h2{
+#back,
+h2 {
   display: inline;
 }
 input::file-selector-button {
@@ -43,30 +60,36 @@ input::file-selector-button {
   box-shadow: 0px 0.5px 0.6px;
   background: var(--color2);
 }
-button{
+
+button {
   border-radius: 7px;
 }
-.col{
+.col {
   background: var(--color2);
 }
-form , .list-group{
+form,
+.list-group {
   padding-top: 5px;
-  border-radius: 8px;
-  font-family: 'Josefin Sans';
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  font-family: "Josefin Sans";
   font-size: calc(15px + 0.390625vw);
   padding-left: 2vw;
   padding-right: 2vw;
   padding-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.822);
+  background-color: rgba(255, 255, 255, 0.842);
 }
 h2 {
-  padding :15px ;
+  padding: 15px;
   font-weight: bold;
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
 }
 
-
-#Lgbtn, #Regbtn , #Gstbts {
+#Lgbtn,
+#Regbtn {
   border-radius: 7px;
   background-color: white;
   border-color: var(--color1);
@@ -74,12 +97,27 @@ h2 {
   box-shadow: 0px 0.5px 0.6px;
   background: var(--color2);
 }
-#Lgbtn:hover ,#Regbtn:hover , #Gstbts:hover{
+#Lgbtn:hover,
+#Regbtn:hover {
   transition-duration: 0.2s;
   box-shadow: 0px 2px 2.4px;
 }
-
-#Regbtn{
+#resetpwd {
+  cursor: pointer;
+  width: 200px;
+}
+#Regbtn,
+#or {
+  display: table-cell;
+}
+#or {
+  padding-left: 20px;
+}
+#row {
+  margin-bottom: 50px;
+  display: table;
+}
+#Regbtn {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
@@ -89,41 +127,49 @@ h2 {
   padding-left: 15px;
   padding-bottom: 10px;
 }
-#formlabels{
+#formlabels {
   padding-left: 10px;
   padding-top: 5px;
 }
-#notauser{
-  font-family: 'Josefin Sans';
+.center {
+  border: 5px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+#notauser {
+  font-family: "Josefin Sans";
   font-size: calc(15px + 0.390625vw);
   font-weight: bold;
-  padding-left: 2vw;
+  padding-left: 5vw;
 }
-#qtydiv{
+#qtydiv {
   align-self: end;
   margin-bottom: 5px;
   width: 150px;
   display: flex;
   flex-direction: row;
-  height: 30px
+  height: 30px;
 }
-#qtynum{
+#qtynum {
   font-size: 20px;
   padding: 0;
 }
-#inc-dec{
+#inc-dec {
   background-color: rgba(255, 255, 255, 0.404);
   font-size: 30px;
-  font-weight:350;
+  font-weight: 350;
   border-color: black;
 }
 
-#general{
-  font-family: 'Josefin Sans';
+#general {
+  font-family: "Josefin Sans";
   padding-left: 20%;
   padding-right: 20%;
 }
-#navbuttons{
+#navbuttons {
   display: flex;
   flex-direction: column;
   margin-left: "100px";
@@ -132,22 +178,22 @@ h2 {
   padding-bottom: 100%;
 }
 
-#listitemparent{
+#listitemparent {
   margin-left: 8px;
 }
 
-#addstuff{
+#addstuff {
   width: fit-content;
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-#addstuffdiv{
+#addstuffdiv {
   justify-content: center;
   flex-direction: column;
 }
 
-#itemdiv{
+#itemdiv {
   padding-left: 3px;
   padding-top: 5px;
   padding-right: 2px;
@@ -157,13 +203,12 @@ h2 {
   border-radius: 8px;
   height: 100px;
 }
-#listitem{
-border-width: 5px;
-border-color: var(--color2);
+#listitem {
+  border-width: 5px;
+  border-color: var(--color2);
 }
 
-
-#itemdesc{
+#itemdesc {
   background-color: rgba(255, 255, 255, 0.466);
   border-radius: 7px;
   height: 65px;
@@ -171,8 +216,8 @@ border-color: var(--color2);
   padding-left: 5px;
   padding-top: 2px;
 }
-#itemprice{
-  float:right;
+#itemprice {
+  float: right;
   margin-bottom: 0;
   padding-right: 5px;
   padding-left: 5px;
@@ -180,7 +225,7 @@ border-color: var(--color2);
   position: relative;
   line-height: 20px;
 }
-#itemname{
+#itemname {
   border-radius: 5px;
   margin-bottom: 2px;
   padding-left: 5px;
@@ -190,156 +235,166 @@ border-color: var(--color2);
   font-size: large;
   line-height: 20px;
 }
-#itemname,#itemprice{
+#itemname,
+#itemprice {
   display: inline-block;
 }
 
-#img{
+#img {
   float: left;
   width: 90px;
   height: 90px;
   vertical-align: middle;
   border-radius: 7px;
 }
-.card-img-left{
+.card-img-left {
   background-color: white;
   border-radius: 7px;
-
+  width: 100px;
 }
-#delitem{
+#delitem {
   width: 30px;
   height: 30px;
   float: right;
   font-size: 20px;
-  
 }
-#delitem, #itemdesc{
+#delitem,
+#itemdesc {
   display: inline-block;
 }
-#saveitem{
+#saveitem {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-#buts{
+#buts {
   float: right;
   display: flex;
   flex-direction: column;
 }
-.card.horizontal{
+.card.horizontal {
   display: flex;
-  flex:1 1 auto;
+  flex: 1 1 auto;
 }
 
-#tibform-group{
+#tibform-group {
   margin-top: 5px;
   margin-bottom: 5px;
   display: flex;
   flex-direction: row;
   padding-bottom: 5px;
+}
+#footercheckout{
+  background-color: var(--color2);
+  padding-bottom: 10px;
+  padding-left: 100%;
+  border-top: #181111;
+  border-width: 3px;
   
 }
 /* ORDER LOG PAGE */
-#orderdiv{
+
+#orderdiv {
   margin-bottom: 10px;
-  
 }
-#order{
+#order {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 5px;
   border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.459);
-  border-style:solid;
+  border-style: solid;
   border-color: var(--color2);
 }
-#orderheader{
+#orderheader {
   display: flex;
   flex-direction: row;
 }
-#table{
+#table {
   width: 140px;
 }
-#table,#status{
+#table,
+#status {
   margin-top: 3px;
   margin-left: 15px;
   margin-bottom: 5px;
   font-size: 20px;
 }
 
-#obl1{
+#obl1 {
   display: flex;
   flex-direction: row;
 }
-#obl2{
+#obl2 {
   display: flex;
   flex-direction: row;
 }
-#orderbutton{
-  color: var(--color1);
+#orderbutton {
+  color: white;
   width: 135px;
   margin-left: 15px;
   margin-bottom: 10px;
-  border-color: var(--color1);
+  border-color: white;
   border-radius: 15px;
-  background: var(--color2)
+  background: var(--color3);
 }
-#formlabetable{
+#formlabetable {
   width: 200px;
 }
-#profileheader{
+#profileheader {
   color: aliceblue;
 }
-#btn{
-  
+#btn {
   border-radius: 7px;
   background-color: white;
   border-color: white;
   color: black;
   box-shadow: 0px 0.5px 0.6px;
 }
-#page{
-
+#page {
   background-color: bisque;
 }
-#gen{
+#gen {
   background-color: bisque;
   padding-left: 20%;
   padding-right: 30.5%;
   padding-bottom: 100%;
 }
-#navbuttons{
+#navbuttons {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin-left: "auto";
   background-color: rgba(248, 248, 248, 0.596);
-  border-radius: 8px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   padding-bottom: 100%;
 }
-#navbuttonset1{
+#navbuttonset1 {
   margin-left: "auto";
-  display:inline-block;
+  display: inline-block;
   padding-top: 15px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 25px;
   border-radius: 8px;
 }
-#navbuttonset2{
+#navbuttonset2 {
   margin-left: "auto";
-  display:inline-block;
+  display: inline-block;
   background-color: blanchedalmond;
   padding-top: 15px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 25px;
 }
-#navbuttonset3{
+#navbuttonset3 {
   margin-left: "auto";
-  display:inline-block;
+  display: inline-block;
   background-color: blanchedalmond;
   padding-top: 15px;
   padding-left: 50px;
@@ -347,30 +402,28 @@ border-color: var(--color2);
   padding-bottom: 100%;
 }
 /* Category POPUP */
-#CategoryItem{
+#CategoryItem {
   margin-left: 5px;
   background-color: var(--color2);
   border-radius: 5px;
   height: 30px;
   display: flex;
   flex-direction: row;
-  
-
 }
-#AddCategory{
+#AddCategory {
   margin-left: 10px;
   margin-right: 10px;
-  color: #80972d;
+  color: var(--color1);
 }
-#CategoryDeleteButton{
+#CategoryDeleteButton {
   float: right;
 }
-#CategoryName{
+#CategoryName {
   font-size: 20px;
   padding-left: 5px;
   width: 500px;
 }
-#CategoryEditInput{
+#CategoryEditInput {
   margin-left: 5px;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -378,40 +431,40 @@ border-color: var(--color2);
   padding-top: 5px;
   padding-left: 5px;
 }
-#CategoryNavbar{
-  position:sticky;
+#CategoryNavbar {
+  position: sticky;
   padding: 3px;
   margin-bottom: 5px;
   background-color: white;
   border-radius: 5px;
 }
-#CategoryNavButton{
+#CategoryNavButton {
   color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0);
   border-color: rgba(255, 255, 255, 0);
   transition: opacity 0.5s ease-in-out;
   display: inline-block;
 }
-#CategoryNavButton:hover{
+#CategoryNavButton:hover {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
   background: var(--color2);
-  color: #80972d
+  color: var(--color3);
 }
-input{
+input {
   border-radius: 7px;
   border-width: 1px;
   border-color: grey;
-  border-style:hidden;
+  border-style: hidden;
   padding: 2px;
   padding-left: 8px;
 }
-input:focus{
+input:focus {
   border-top-color: aquamarine;
   border-width: 2px;
   border-radius: 7px;
 }
-#qrtextresult{
+#qrtextresult {
   font-weight: bold;
   font-size: large;
   margin-left: 25px;

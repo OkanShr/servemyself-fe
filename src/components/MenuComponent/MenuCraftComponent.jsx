@@ -24,7 +24,7 @@ export const MenuCraftComponent = (props) => {
     price: "",
     category: "Asian",
     imageurl: "",
-    restaurant: loginDetails.user.name,
+    restaurant: loginDetails.user.username,
   };
   
   const [values, setValues] = useState(initialState);

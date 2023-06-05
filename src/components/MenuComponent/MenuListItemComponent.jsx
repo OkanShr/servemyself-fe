@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 
 export const MenuListItemComponent = (props) => {
-  const { loginDetails, updateItemList, trayitems,setTrayItem,page ,categories} = props;
+  const { loginDetails, updateItemList, trayitems,setTrayItem,confirmed,page ,categories} = props;
   const {  name , description , price , id,imageurl} = props.item;
   const [showUpdate, setShowUpdate] = useState(false);
   const [showAdd,setShowAdd]= useState(true)
@@ -52,19 +52,19 @@ useEffect(() =>{
     if(page === "viewmenu" || page === "tray" ){
       if( showAdd===false ){
         return(
-          <Card.Text>{!trayitems  ? price + "₺" : trayitems[trayitems.indexOf(props.item,0)].quantity * price + "₺"}</Card.Text>
+          <Card.Text>{!trayitems  ? price + +"$" : trayitems[trayitems.indexOf(props.item,0)].quantity * price + "$"}</Card.Text>
         )
       }
       else{
         return(
-          <Card.Text>{price + "₺"}</Card.Text>
+          <Card.Text>{price + "$"}</Card.Text>
         )
      
       }
     }
     else{
       return(
-        <Card.Text>{price + "₺"}</Card.Text>
+        <Card.Text>{price + "$"}</Card.Text>
       )
     }
     
@@ -84,45 +84,67 @@ useEffect(() =>{
     if(page === "tray")
     {
       let index = trayitems.indexOf(props.item);
-      return(
-        <div className="w-100 pt-0 pb-1 px-1  ">
-        {filterButtons()}
-        <textarea id='itemdesc' className="form-control w-100" 
-        onChange={(e) => (
-          (trayitems[index].description = e.target.value),
-          setUpdate(!update)
-        )} 
-        rows={3}
-        type="text"
-        placeholder="Buraya Yorum Ekleyebilirsiniz"
-        ></textarea>
-        
-        </div>
-        
-      )
-    }
-    
-  }
-
-  function filterButtons (){
-    if(loginDetails.user.role !== "ADMIN" ){
-      if( showAdd===false){
-        return(
-        <div  id='qtydiv'>
-          <button type='button' id='inc-dec'  onClick={() => handleDecrement(props.item)} className='input-group-text'>-</button>
-          <div id='qtynum' className='form-control text-center'>{!trayitems  ? "" 
-          :trayitems[trayitems.indexOf(props.item, 0)].quantity }</div>
-          <button type='button' id='inc-dec' onClick={() => handleIncrement(props.item)} className='input-group-text'>+</button>
-        </div>
+      if(page === "tray" && confirmed === true && confirmed !== undefined)
+      {
+          return(
+          <div className="w-100 pt-0 pb-1 px-1  ">
+          {filterButtons()}
+          
+          <p>{trayitems[index].description}</p>
+          </div>
         )
       }
       else{
         return(
-          <Button onClick={handleAdd} className="align-self-end btn px-3 py-1" >Add</Button>
+          <div className="w-100 pt-0 pb-1 px-1  ">
+          {filterButtons()}
+          <textarea id='itemdesc' className="form-control w-100" 
+          onChange={(e) => (
+            (trayitems[index].description = e.target.value),
+            setUpdate(!update)
+          )} 
+          value={trayitems[index].description}
+          rows={3}
+          type="text"
+          placeholder="Buraya Yorum Ekleyebilirsiniz"
+          ></textarea>
+          </div>
         )
       }
+      
     }
-    else{
+    
+    
+  }
+
+  function filterButtons (){
+    if(loginDetails.user.role !== "ADMIN" && showAdd === false){
+        if( confirmed === true && confirmed !== undefined){
+          return(
+            
+            <div  id='qtydiv'>
+            <div id='qtynum' className='form-control text-center'>{!trayitems  ? "" 
+            :trayitems[trayitems.indexOf(props.item, 0)].quantity }</div>
+          </div>
+            )
+        }
+        else{return(
+          <div  id='qtydiv'>
+              <button type='button' id='inc-dec'  onClick={() => handleDecrement(props.item)} className='input-group-text'>-</button>
+              <div id='qtynum' className='form-control text-center'>{!trayitems  ? "" 
+              :trayitems[trayitems.indexOf(props.item, 0)].quantity }</div>
+              <button type='button' id='inc-dec' onClick={() => handleIncrement(props.item)} className='input-group-text'>+</button>
+            </div>
+        )}
+        
+    }
+    if(loginDetails.user.role !== "ADMIN" && showAdd === true){
+        return(
+          <Button onClick={handleAdd} id="Lgbtn" className="align-self-end btn px-3 py-1" >Add</Button>
+        )
+      }
+    
+    if(loginDetails.user.role === "ADMIN" ){
       return(<div className='float-end d-flex flex-column'>
       <MdDelete onClick={deleteItemf} size={30} />
       <MdModeEditOutline 

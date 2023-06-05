@@ -26,14 +26,15 @@ export const UserHomePage = () => {
 
   return (
     
-    <div className="m-3" id="body">
+    <div id="body">
       
-      <div>
+      <div id="banner">
       <Button id="Lgbtn" onClick={logoutFunction}>Logout</Button>
+      <UserDetailsComponent id="profileheader" user={loginDetails.user} />
       </div>
       <div id="form">
       
-      <UserDetailsComponent id="profileheader" user={loginDetails.user} />
+      
       <div id="navbuttons">
       <div id="navbuttonset1">
       <Button id="Lgbtn"

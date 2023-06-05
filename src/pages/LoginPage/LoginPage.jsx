@@ -15,6 +15,31 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+  const guestLogin = {
+    username: "Guest",
+    password: "Guest12345!"
+  };
+
+  const loginAsGuestFunction = (e) => {
+    e.preventDefault();
+    loginUser(guestLogin)
+      .then((x) => {
+        setError("");
+        const data = x.data;
+        console.log(data);
+        dispatch(
+          login({
+            token: data.accessToken,
+            user: data.user,
+          })
+        );
+        navigate("/home");
+      })
+      .catch((e) => {
+        console.log(e.response.data.error);
+        setError(e.response.data.error);
+      });
+  }
 
   const [error, setError] = useState("");
 
@@ -42,11 +67,10 @@ const LoginPage = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center" id='body'>
-      <h2>
+      <h2 id='banner' className='pb-5 pt-5'>
         <strong>SERVE MYSELF</strong>
       </h2>
 
-      <br />
       <Form onSubmit={loginFunction}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label id="formlabels">Username</Form.Label>
@@ -55,7 +79,7 @@ const LoginPage = () => {
               setLoginDetails({ ...loginDetails, username: e.target.value })
             }
             type="text"
-            required
+            
             placeholder="username"
           />
         </Form.Group>
@@ -66,7 +90,7 @@ const LoginPage = () => {
             onChange={(e) =>
               setLoginDetails({ ...loginDetails, password: e.target.value })
             }
-            required
+            
             type="password"
             placeholder="password"
           />
@@ -81,22 +105,36 @@ const LoginPage = () => {
           
           
         </div>
-        <p
+        <p id='resetpwd'
           onClick={() => navigate("/password-reset")}
-          style={{ cursor: "pointer" }} id='text'
         >
           Reset Password
         </p>
+        
+        
         <div id='notauser'>Not a User?</div>
-          <Button id="Regbtn"
+        <div id='row'>
+        <Button id="Regbtn"
             onClick={() => navigate("/register")}
-            variant="success"
             required
-            type="submit"
             size="md"
           >
             Register
+          </Button >
+          <p id="or"><strong>
+          OR
+          </strong></p>
+          <Button id="Regbtn"
+            onClick={loginAsGuestFunction}
+            required
+            size="md"
+          >
+            Log As Guest
           </Button>
+        </div>
+        
+        
+        
       </Form>
     </Container>
 

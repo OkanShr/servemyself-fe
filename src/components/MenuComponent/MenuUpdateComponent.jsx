@@ -106,7 +106,7 @@ return (
     keyboard={false}
   >
     <Modal.Header>
-      <Modal.Title>Add Item</Modal.Title>
+      <Modal.Title>Edit Item</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form onSubmit={(e) => {props.save(e, values); onFileUpload()}}>
