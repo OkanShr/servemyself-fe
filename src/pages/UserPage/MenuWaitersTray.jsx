@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { MenuListComponent } from "../../components/MenuComponent/MenuListComponent";
 import { createOrder } from "../../api/orderApi";
 
@@ -49,14 +48,12 @@ export const MenuWaitersTray = () => {
   const getTray = () => {
     traydata = JSON.parse(localStorage.getItem("trayitems"));
     if (traydata) {
-      console.log(traydata);
       setTrayItem(traydata);
     }
   };
 
   const sendOrder = () => {
     if (orderinfo.ordertable !== "") {
-      console.log(orderinfo);
       createOrder(orderinfo, loginDetails.token);
       navigate("../menu/usermenu");
       window.alert(
@@ -69,7 +66,6 @@ export const MenuWaitersTray = () => {
   };
   function handleConfirm() {
     if (confirmed === false) {
-      console.log(confirmed);
       return (
         <Button id="Lgbtn" className="m-2" onClick={() => setConfirmed(true)}>
           Confirm Order
@@ -77,7 +73,6 @@ export const MenuWaitersTray = () => {
       );
     }
     if (confirmed === true) {
-      console.log(confirmed);
 
       return (
         <div>
@@ -107,6 +102,8 @@ export const MenuWaitersTray = () => {
 
         </div>
       <MenuListComponent
+        updateItemList={getTray}
+
         confirmed={confirmed}
         items={trayitems}
         loginDetails={loginDetails}

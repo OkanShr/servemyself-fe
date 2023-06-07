@@ -26,7 +26,6 @@ const LoginPage = () => {
       .then((x) => {
         setError("");
         const data = x.data;
-        console.log(data);
         dispatch(
           login({
             token: data.accessToken,
@@ -36,7 +35,6 @@ const LoginPage = () => {
         navigate("/home");
       })
       .catch((e) => {
-        console.log(e.response.data.error);
         setError(e.response.data.error);
       });
   }
@@ -45,12 +43,10 @@ const LoginPage = () => {
 
   const loginFunction = (e) => {
     e.preventDefault();
-    console.log(loginDetails);
     loginUser(loginDetails)
       .then((x) => {
         setError("");
         const data = x.data;
-        console.log(data);
         dispatch(
           login({
             token: data.accessToken,
@@ -60,7 +56,6 @@ const LoginPage = () => {
         navigate("/home");
       })
       .catch((e) => {
-        console.log(e.response.data.error);
         setError(e.response.data.error);
       });
   };

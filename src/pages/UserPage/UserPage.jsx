@@ -1,19 +1,17 @@
 import "../../App.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { MenuListComponent } from "../../components/MenuComponent/MenuListComponent";
 import { getMenu } from "../../api/menuApi";
 import { CategoryNavbar } from "../../components/MenuComponent/CategoryNavbar";
 import { getCategory } from "../../api/menuApi";
-import { logout } from "../../store/authentication";
 
 export const UserPage = () => {
   const loginDetails = useSelector((state) => state.auth.value);
   const navigate = useNavigate();
   const page = "viewmenu";
-  const dispatch = useDispatch();
 
  
   useEffect(() => {
@@ -39,12 +37,10 @@ export const UserPage = () => {
       loginDetails.token
     ).then((response) => {
       setItems(response.data);
-      console.log(response.data);
     });
   };
 
   useEffect(() => {
-    console.log(selectedcategory);
   }, [selectedcategory]);
 
   return (

@@ -1,10 +1,9 @@
-import "../../App.css"
+import "../../App.css";
 
 import React, { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { deleteUser, updateUser } from "../../api/userApi";
 import { UserUpdateComponent } from "./UserUpdateComponent";
-
 
 export const UserListItemComponent = (props) => {
   const { loginDetails, updateUserList } = props;
@@ -13,10 +12,8 @@ export const UserListItemComponent = (props) => {
 
   const save = (e, values) => {
     e.preventDefault();
-    console.log(values);
     updateUser(values, loginDetails.token)
       .then(() => {
-        console.log(values);
         setShowUpdate(false);
         updateUserList();
       })
@@ -33,9 +30,13 @@ export const UserListItemComponent = (props) => {
   };
 
   return (
-    <div className="p-3 d-flex flex-row justify-content-between" id="listitemparent">
+    <div
+      className="p-3 d-flex flex-row justify-content-between"
+      id="listitemparent"
+    >
       <div className="d-flex gap-4" id="listitem">
         <img
+        alt="avatar"
           width="100"
           src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
         />
@@ -50,7 +51,6 @@ export const UserListItemComponent = (props) => {
         <MdModeEditOutline
           onClick={() => {
             setShowUpdate(true);
-            console.log(props.user);
           }}
           size={30}
         />

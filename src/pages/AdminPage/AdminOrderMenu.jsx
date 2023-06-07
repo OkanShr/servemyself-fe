@@ -36,7 +36,6 @@ export const AdminOrderMenu = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       updateOrderList();
-      console.log(interval)
     }, 3000);
     return () => clearInterval(interval);
   }, [update]);
@@ -46,28 +45,24 @@ export const AdminOrderMenu = () => {
   const setReady = () => {
     setShowSelf(
       { ...showSelf, Ready: !showSelf.Ready },
-      console.log(!showSelf.Ready)
     );
     setUpdate(!update);
   };
   const setPending = () => {
     setShowSelf(
       { ...showSelf, Pending: !showSelf.Pending },
-      console.log(!showSelf.Pending)
     );
     setUpdate(!update);
   };
   const setPreparing = () => {
     setShowSelf(
       { ...showSelf, Preparing: !showSelf.Preparing },
-      console.log(!showSelf.Preparing)
     );
     setUpdate(!update);
   };
   const setClosed = () => {
     setShowSelf(
       { ...showSelf, Closed: !showSelf.Closed },
-      console.log(!showSelf.Closed)
     );
     setUpdate(!update);
   };

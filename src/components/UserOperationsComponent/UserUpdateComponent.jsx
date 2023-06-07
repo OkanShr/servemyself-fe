@@ -3,7 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 
 export const UserUpdateComponent = (props) => {
   const { showUpdate, setShowUpdate } = props;
-  const { id, username, name, surname, mail, role ,password} = props.user;
+  const { id, username, name, surname, mail, role, password } = props.user;
 
   const [values, setValues] = useState({
     id: id || 0,
@@ -12,12 +12,12 @@ export const UserUpdateComponent = (props) => {
     surname: surname || "",
     mail: mail || "",
     role: role || "",
-    password: password
+    password: password,
   });
 
   const handleClose = () => setShowUpdate(false);
 
-  const roles = ["SUPER_ADMIN", "ADMIN", "USER" , "GUEST"];
+  const roles = ["SUPER_ADMIN", "ADMIN", "USER", "GUEST"];
 
   return (
     <Modal
@@ -34,7 +34,9 @@ export const UserUpdateComponent = (props) => {
           <Form.Group size="lg" className="mb-3" controlId="form.username">
             <Form.Label size="lg">username</Form.Label>
             <Form.Control
-              onChange={(e) => setValues({ ...values, username: e.target.value })}
+              onChange={(e) =>
+                setValues({ ...values, username: e.target.value })
+              }
               value={values.username}
               required
               size="lg"
@@ -63,7 +65,8 @@ export const UserUpdateComponent = (props) => {
             <Form.Group className="mb-3" size="lg" controlId="form.surname">
               <Form.Label size="lg">surname</Form.Label>
               <Form.Control
-                onChange={(e) => setValues({ ...values, surname: e.target.value })
+                onChange={(e) =>
+                  setValues({ ...values, surname: e.target.value })
                 }
                 value={values.surname}
                 size="lg"

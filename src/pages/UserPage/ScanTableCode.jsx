@@ -54,7 +54,6 @@ export const ScanTableCode = () => {
               setShowConfirm(true);
             }
             if (!!error) {
-              console.info(error);
             }
           }}
           containerStyle={{ height: 500 }}

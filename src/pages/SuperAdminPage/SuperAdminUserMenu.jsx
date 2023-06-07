@@ -3,12 +3,11 @@ import "../../App.css";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { createUser, createUserByRole, getAllUsers } from "../../api/userApi";
-import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
+import { createUserByRole, getAllUsers } from "../../api/userApi";
 import { UserCreateComponent } from "../../components/UserOperationsComponent/UserCreateComponent";
 import { UserListComponent } from "../../components/UserOperationsComponent/UserListComponent";
-import { Navigate, useNavigate } from "react-router";
-import { login, logout } from "../../store/authentication";
+import { useNavigate } from "react-router";
+import { logout } from "../../store/authentication";
 
 export const SuperAdminUserMenu = () => {
   const loginDetails = useSelector((state) => state.auth.value);
@@ -32,7 +31,6 @@ export const SuperAdminUserMenu = () => {
 
   const create = (e, values) => {
     e.preventDefault();
-    console.log(values);
     createUserByRole(values, loginDetails.token)
       .then(() => {
         updateUserList();
@@ -52,9 +50,7 @@ export const SuperAdminUserMenu = () => {
             Logout
           </Button>
 
-          <h1 className="mt-2 mb-2">
-            SuperAdminPage
-          </h1>
+          <h1 className="mt-2 mb-2">SuperAdminPage</h1>
         </div>
         <Button
           id="Lgbtn"

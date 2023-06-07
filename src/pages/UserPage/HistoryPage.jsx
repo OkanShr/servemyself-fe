@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { getHistory } from "../../api/menuApi";
 import { OrderListComponent } from "../../components/OrderComponents/OrderListComponent";
 
@@ -24,13 +23,11 @@ export const HistoryPage = () => {
     getHistory(loginDetails.user.username, loginDetails.token).then(
       (response) => {
         setOrders(response.data);
-        console.log(response.data);
       }
     );
   };
   useEffect(() => {
     updateOrderList();
-    console.log("updated");
   }, [update]);
 
   return (

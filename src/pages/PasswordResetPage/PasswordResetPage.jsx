@@ -17,7 +17,7 @@ export const PasswordResetPage = () => {
 
   const resetPassword = (e) => {
     e.preventDefault();
-    if (values.emailSent == false) {
+    if (values.emailSent === false) {
       passwordResetRequest({ mail: values.mail }).then(() => {
         setValues({ ...values, emailSent: true });
       });

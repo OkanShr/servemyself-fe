@@ -7,17 +7,15 @@ export const UserListComponent = (props) => {
 
   return (
     <ListGroup className="gap-1 p-2">
-      {users
-        .slice(1)
-        .map((x) => (
-          <ListGroupItem key={x.id}>
-            <UserListItemComponent
-              updateUserList={updateUserList}
-              loginDetails={loginDetails}
-              user={x}
-            />
-          </ListGroupItem>
-        ))}
+      {users.slice(1).map((x) => (
+        <ListGroupItem key={x.id}>
+          <UserListItemComponent
+            updateUserList={updateUserList}
+            loginDetails={loginDetails}
+            user={x}
+          />
+        </ListGroupItem>
+      ))}
     </ListGroup>
   );
 };

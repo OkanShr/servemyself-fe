@@ -9,7 +9,7 @@ export const ReadQR = () => {
   const [qrcode, setQrcode] = useState("Waiting for Scan..");
 
   return (
-    <div  id="body">
+    <div id="body">
       <div>
         <div id="banner">
           <Button id="Lgbtn" onClick={() => navigate("../home")}>

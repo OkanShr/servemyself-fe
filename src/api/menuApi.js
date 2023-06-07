@@ -1,4 +1,3 @@
-import axios from "axios";
 import { instance as axiosInstance } from "./apiInterceptor";
 
 export const getMenu = (restaurant,token) => {

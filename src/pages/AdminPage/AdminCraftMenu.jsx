@@ -1,9 +1,8 @@
 import "../../App.css";
 
 import { Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { UserDetailsComponent } from "../../components/UserDetailsComponent/UserDetailsComponent";
 import { MenuCraftComponent } from "../../components/MenuComponent/MenuCraftComponent";
 import { MenuListComponent } from "../../components/MenuComponent/MenuListComponent";
 import { CategoryAddComponent } from "../../components/MenuComponent/CategoryAddComponent";
@@ -23,14 +22,12 @@ export const AdminCraftMenu = () => {
   const updateItemList = () => {
     getMenu(loginDetails.user.username, loginDetails.token).then((response) => {
       setItems(response.data);
-      console.log(response.data);
     });
   };
 
   const updateCategoryList = () => {
     getCategory(loginDetails.token).then((response) => {
       setCategory(response.data);
-      console.log(response.data);
     });
   };
 
@@ -45,7 +42,6 @@ export const AdminCraftMenu = () => {
       .then(() => {
         updateItemList();
         setShowCraft(false);
-        console.log(values);
       })
       .catch((e) => {
         alert(e);
@@ -54,13 +50,13 @@ export const AdminCraftMenu = () => {
   };
 
   return (
-    <div id="body" >
+    <div id="body">
       <div id="banner">
         <Button id="Lgbtn" onClick={() => navigate("../home")}>
           Back To Main Menu
         </Button>
 
-        <h1 >Craft Your Menu</h1>
+        <h1>Craft Your Menu</h1>
       </div>
 
       <div id="addstuffdiv">
