@@ -7,7 +7,13 @@ export const getOrders = (token) => {
     }
   });
 };
-
+export const getHistory = (username,token) => {
+  return axiosInstance.get("/api/history/" + username, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  });
+};
 export const updateOrder = (post, token) => {
   return axiosInstance.put("/api/orders", post, {
     headers:{

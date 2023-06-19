@@ -8,14 +8,6 @@ export const getMenu = (restaurant,token) => {
     
   });
 };
-export const getHistory = (username,token) => {
-  return axiosInstance.get("/api/history/" + username, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
-  });
-};
-
 export const updateItem = (post, token) => {
   return axiosInstance.put("/api/menu", post, {
     headers: {
@@ -23,7 +15,6 @@ export const updateItem = (post, token) => {
     },
   });
 };
-
 export const deleteItem = (id, token) => {
   return axiosInstance.delete("/api/menu/" + id, {
     headers: {
@@ -31,7 +22,6 @@ export const deleteItem = (id, token) => {
     },
   });
 };
-
 export const createItem = (post, token) => {
   console.log(post)
   return axiosInstance.post("/api/menu/create-item", post, {
@@ -40,8 +30,6 @@ export const createItem = (post, token) => {
     },
   });
 };
-// Categoy
-
 export const getCategory = (token) => {
   return axiosInstance.get("/api/category", {
     headers: {
@@ -50,7 +38,6 @@ export const getCategory = (token) => {
     
   });
 };
-
 export const createCategory = (post, token) => {
   return axiosInstance.post("/api/category/create-category",post,{
     headers: {
@@ -65,7 +52,6 @@ export const updateCategory = (post,token) => {
     }
   });
 };
-
 export const deleteCategory = (id, token) => {
   return axiosInstance.delete("/api/category/" + id,{
     headers: {

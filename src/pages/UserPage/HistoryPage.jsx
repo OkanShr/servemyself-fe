@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { getHistory } from "../../api/menuApi";
+import { getHistory } from "../../api/orderApi";
 import { OrderListComponent } from "../../components/OrderComponents/OrderListComponent";
 
 export const HistoryPage = () => {

@@ -113,10 +113,10 @@ export const OrderListItemComponent = (props) => {
     return (
       <div id="order">
         <div id="orderheader">
-          <p id="table">Table : {ordertable}</p>
-          <p id="status">Order Status : {orderstatus}</p>
+          <p id="table">Table: {ordertable.substring(ordertable.indexOf(":") + 1)}</p>
+          <p id="status">Status: {orderstatus}</p>
           <p id="status">
-            Order Date : {orderdate.substring(0, orderdate.length - 21)}
+            Date: {orderdate.substring(0, orderdate.length - 21)}
           </p>
         </div>
 

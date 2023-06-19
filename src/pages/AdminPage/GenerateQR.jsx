@@ -1,10 +1,9 @@
-import "../../App.css";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
+import '../../App.css';
+import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router";
-import QRCode from "qrcode";
+import {  useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import QRCode from 'qrcode'
 
 export const GenerateQR = () => {
   const [url, setUrl] = useState("");
@@ -14,18 +13,17 @@ export const GenerateQR = () => {
   const loginDetails = useSelector((state) => state.auth.value);
 
   const GenerateQRCode = () => {
-    QRCode.toDataURL(
-      ultimateqr,
-      {
-        width: 200,
-        margin: 1,
-        color: { light: "#f8f8f805" },
-      },
-      (err, url) => {
-        if (err) setQrcode(url);
-      }
-    );
-  };
+    QRCode.toDataURL(ultimateqr,{
+      width: 200,
+      margin: 1,
+      color:{ light:'#f8f8f805'}
+    },(err,url)=>{
+      if (err) return console.error(err)
+
+      console.log(url)
+      setQrcode(url)
+    })
+  } 
 
   const navigate = useNavigate();
 

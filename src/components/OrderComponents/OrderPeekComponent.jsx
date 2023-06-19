@@ -21,7 +21,7 @@ export const OrderPeekComponent = (props) => {
       keyboard={false}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Order of Table: {ordertable}</Modal.Title>
+        <Modal.Title>Order of : {ordertable}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {order.map(({ id, quantity, name, price, description }) => (
