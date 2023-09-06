@@ -3,13 +3,8 @@ import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-let ts = Date.now();
-let date_ob = new Date(ts);
-let date = date_ob.getDate();
-let month = date_ob.getMonth() + 1;
-let year = date_ob.getFullYear();
-// prints date & time in YYYY-MM-DD format used for uploading files
-let today = year + "-" + month + "-" + date;
+const timestamp = Date.now();
+const date = new Date(timestamp).toISOString().split('T')[0];
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 export const MenuUpdateComponent = (props) => {
@@ -42,7 +37,7 @@ export const MenuUpdateComponent = (props) => {
         e.type === "image/jfif"
       ) {
         setSelectedImage(e);
-        setValues({ ...values, imageurl: today + "-" + e.name });
+        setValues({ ...values, imageurl: `${date}-` + e.name });
       } else {
         console.log("Has to be jpg/png/jpeg/jfif");
       }
@@ -58,7 +53,7 @@ export const MenuUpdateComponent = (props) => {
 
     try {
       axios
-        .post("http://192.168.1.106:3001/upload", formData, {})
+        .post("http://localhost:3010/upload", formData, {})
         .then((res) => {
           console.log(res.statusText);
         });

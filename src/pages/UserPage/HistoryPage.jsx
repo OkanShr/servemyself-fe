@@ -28,12 +28,16 @@ export const HistoryPage = () => {
   };
   useEffect(() => {
     updateOrderList();
-  }, [update]);
+  });//deleted dependency array
+
+  const goBackToMenu = () => {
+    navigate("../../userhomepage");
+  };
 
   return (
     <div id="body">
       <div id="banner">
-      <Button id="Lgbtn" onClick={() => navigate("../../userhomepage")}>
+      <Button id="Lgbtn" onClick={goBackToMenu}>
         Back To Menu
       </Button>
       <h1 className="mt-2">

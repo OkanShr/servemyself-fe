@@ -38,6 +38,7 @@ function App() {
         {/* <Route path="*" element={<NotFoundPage />} /> */}
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/home" element={pagesByRole[loginDetails.user.role]} />
+          
           <Route path="/superadmin/usermanager" element={<SuperAdminUserMenu/>} />
           
           <Route path="/menu/scantablecode" element={<ScanTableCode/>}/>

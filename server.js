@@ -1,48 +1,34 @@
-// current timestamp in milliseconds
-let ts = Date.now();
+const express = require('express');
+const app = express();
+const multer = require('multer');
+const cors = require('cors');
 
-let date_ob = new Date(ts);
-let date = date_ob.getDate();
-let month = date_ob.getMonth() + 1;
-let year = date_ob.getFullYear();
-let today = year + "-" + month + "-" + date
-// prints date & time in YYYY-MM-DD format
+app.use(cors());
 
-var express = require('express');
-var app = express();
-var multer = require('multer')
-var cors = require('cors');
-
-app.use(cors())
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-  cb(null, 'public/Images/')
-},
-filename: function (req, file, cb) {
-  cb(null, today + "-" + file.originalname )
-}
-})
-
-var upload = multer({ storage: storage }).single('file')
-
-app.post('/upload',function(req, res) {
-     
-  upload(req, res, function (err) {
-         if (err instanceof multer.MulterError) {
-             return res.status(500).json(err)
-         } else if (err) {
-             return res.status(500).json(err)
-         }
-    return res.status(200).send(req.file)
-
-  })
-
+const storage = multer.diskStorage({
+  destination: 'public/Images/',
+  filename: (req, file, cb) => {
+    const timestamp = Date.now();
+    const date = new Date(timestamp).toISOString().split('T')[0];
+    const filename = `${date}-${file.originalname}`;
+    cb(null, filename);
+  },
 });
 
-app.listen(3001, function() {
+const upload = multer({ storage }).single('file');
 
-  console.log('App running on port 3001');
-
+app.post('/upload', (req, res) => {
+  upload(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
 });
 
+const PORT = process.env.PORT || 3010;
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}`);
+});

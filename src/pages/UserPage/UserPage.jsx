@@ -4,26 +4,24 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { MenuListComponent } from "../../components/MenuComponent/MenuListComponent";
-import { getMenu } from "../../api/menuApi";
+import { getMenu, getCategory } from "../../api/menuApi";
 import { CategoryNavbar } from "../../components/MenuComponent/CategoryNavbar";
-import { getCategory } from "../../api/menuApi";
 
 export const UserPage = () => {
   const loginDetails = useSelector((state) => state.auth.value);
   const navigate = useNavigate();
   const page = "viewmenu";
-
- 
-  useEffect(() => {
-    updateItemList();
-    updateCategoryList();
-  }, []);
+  const tablecode = JSON.parse(localStorage.getItem("tablecode"));
 
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [trayitems, setTrayItem] = useState([]);
   const [selectedcategory, setSelectedCategory] = useState("");
-  const tablecode = JSON.parse(localStorage.getItem("tablecode"));
+
+  useEffect(() => {
+    updateCategoryList();
+    updateItemList();
+  }, []);
 
   const updateCategoryList = () => {
     getCategory(loginDetails.token).then((response) => {
@@ -32,25 +30,18 @@ export const UserPage = () => {
   };
 
   const updateItemList = () => {
-    getMenu(
-      tablecode.substring(0, tablecode.indexOf(":")),
-      loginDetails.token
-    ).then((response) => {
+    getMenu(tablecode.substring(0, tablecode.indexOf(":")), loginDetails.token).then((response) => {
       setItems(response.data);
     });
   };
 
-  useEffect(() => {
-  }, [selectedcategory]);
-
   return (
     <div id="body">
       <div id="banner">
-      <Button id="Lgbtn" onClick={() => navigate("../../userhomepage")}>
+        <Button id="Lgbtn" onClick={() => navigate("../../userhomepage")}>
           Back to Main Menu
         </Button>
         <h1 className="mt-3"> M E N U</h1>
-        
       </div>
       <CategoryNavbar
         categories={categories}

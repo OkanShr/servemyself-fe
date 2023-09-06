@@ -20,7 +20,7 @@ export const SuperAdminUserMenu = () => {
     });
   };
   const navigate = useNavigate();
-  const logoutFunction = (e) => {
+  const logoutFunction = () => {
     navigate("../login");
     logout();
   };
